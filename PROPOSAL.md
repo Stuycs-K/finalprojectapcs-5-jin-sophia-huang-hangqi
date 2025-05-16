@@ -16,6 +16,7 @@ It’s possible that this is a bit too simple so we may try to add extra feature
 - There will be a bar on the top left showing how much time you have left, and text will show up telling you how much time you gain after breaking each wall.
 - The input will be displayed.
 - You get penalties for incorrect input.
+<br/>
 
 2 **Platform game:**\
 <br/>
@@ -25,6 +26,7 @@ It’s possible that this is a bit too simple so we may try to add extra feature
 - Different levels — we’ll need a level map (“home page”)
 - Different mechanisms: lava pits, spikes, wind lift up, enemy eating you, can do 2x speed
 - score for each level based on time needed to complete (300-t, where t is the seconds it takes) or we could do a star rating if needed
+<br/>
 
 3 **Tetris:**\
 <br/>
