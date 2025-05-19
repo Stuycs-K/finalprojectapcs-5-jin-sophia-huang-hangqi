@@ -31,6 +31,11 @@ Nice to have features:
 # Project Design
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
+**List of necessary functions:**
+- An Object class that represents the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing int[][], each slot holds a number representing the color of that box. The grid is then drawn through Processing.
+- An Object class that represent each type of block. Each type of block is stored as a final constant in the class, and will be represented by a 4 by 4 int[][]. Upon construction, a random block is chosen and a random color is chosen.
+- A method for generating blocks onto the grid. The function maps the int[][] of the block onto the grid, centerd at top, and it copies the colors in the block onto the grid.
+- A method for making blocks fall. 
 
 
     
