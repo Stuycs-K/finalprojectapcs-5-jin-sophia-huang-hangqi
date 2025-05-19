@@ -2,20 +2,19 @@
 # Technical Details:
 
 (CHANGE THIS!!!!!)
-
 A description of your technical design. This should include: 
-   
 How you will be using the topics covered in class in the project.
 
 
-PERIOD 5\
-Sophia Jin and Hangqi Huang\
-Metrominoes \
-Brief Project description (1 paragraph summary)\
-Based on Tetris. Drop tetrominoes that fall faster and faster as the levels go up. There are 7 tetrominoes (I, O, T, S, Z, L, J), and we use keys to rotate them and move them around. Fill a row to clear the row. You get more points for stuff like tetris (clearing four rows at once) or T-spins or combos. This will attempt to completely replicate the original Tetris game.\
+**PERIOD:** 5\
+**Groupt Members:** Sophia Jin and Hangqi Huang\
+**Group Name:** Metrominoes \
+**Brief Project description (1 paragraph summary):**\
+We're are making a game of Tetris. In Tetris, tetrominoes are dropped and they fall faster and faster as the time goes on. There are 7 tetrominoes (I, O, T, S, Z, L, J), and we use keys to rotate them and move them around. Fill a row to clear the row. You get more points for feats like tetris (clearing four rows at once) or T-spins or combos. This will attempt to completely replicate the original Tetris game.\
 
-Expanded Description:\
+**Expanded Description:**\
 Critical features (Minimum Viable Product) - What you want to have after 1.5 weeks.\
+-
 - Cancel out row once complete; keep track using array/or rows represented by Deque (?)
 - block should fall down but pause before settling
 - key controls for rotation of blocks
