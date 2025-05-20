@@ -30,12 +30,15 @@ Nice to have features:
      
 # Project Design
 
-UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
+UML Diagrams and descriptions of key algorithms, classes, and how things fit together.\
 **List of necessary functions:**
-- An Object class that represents the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing int[][], each slot holds a number representing the color of that box. The grid is then drawn through Processing.
-- An Object class that represent each type of block. Each type of block is stored as a final constant in the class, and will be represented by a 4 by 4 int[][]. Upon construction, a random block is chosen and a random color is chosen.
+- An Object class that represents the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing Color[][], each slot holds the color of that box. The grid is then drawn through Processing.
+- An Object class that represent each type of block. Each type of block is stored as a final constant in the class, and will be represented by a 4 by 4 Color[][]. Upon construction, a random block is chosen and a random color is chosen.
 - A method for generating blocks onto the grid. The function maps the int[][] of the block onto the grid, centerd at top, and it copies the colors in the block onto the grid.
-- A method for making blocks fall. 
+- A method for making blocks fall. Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.
+- In draw, check if any row is full. If yes, cancel out and move all blocks down.
+- keyPressed methods for moving left, right, and dropping
+- Rotation?
 
 
     
@@ -44,4 +47,10 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 How you are breaking down the project and who is responsible for which parts.
 
 A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
+
+1. Grid, block, and generate by Friday, 5/23
+2. Fall by Monday 5/26
+3. Clear, keyPressed by Wed 5/28
+4. Rotation by Fri 5/30
+5. Other features
 
