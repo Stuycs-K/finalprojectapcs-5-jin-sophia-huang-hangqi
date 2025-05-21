@@ -37,6 +37,8 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - instance variables: color c, Box[] neighbors, int[] position
      - methods: boolean isNotEmpty() tells whether the Box actually has a tetris block in it
      - Box getNeighbor(int dir) returns neighbors[dir]
+     - color getColor()
+     - void setColor(color c)
 - An Block class that represents each type of block. The type of block is stored as a variable in the class, and is represented by a Box[]
      - constructor takes in no args; the shape is randomly chosen and the color is associated with the shape and the position starts at the top middle (might have to be customized for each shape)
      - instance variables: color c, String shape, Box[] position 
