@@ -32,13 +32,21 @@ Nice to have features:
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.\
 **List of necessary functions:**
-- An Object class that represents the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing Color[][], each slot holds the color of that box. The grid is then drawn through Processing.
-- An Object class that represent each type of block. Each type of block is stored as a final constant in the class, and will be represented by a 4 by 4 Color[][]. Upon construction, a random block is chosen and a random color is chosen.
+- A Box class that represents a single box in the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing Color[][], each slot holds the color of that box. The grid is then drawn through Processing.
+     - constructor takes in a color and position
+     - instance variables: color c, Box[] neighbors, int[] position
+     - methods: boolean isNotEmpty() tells whether the Box actually has a tetris block in it
+     - Box getNeighbor(int dir) returns neighbors[dir]
+- An Block class that represents each type of block. The type of block is stored as a variable in the class, and is represented by a Box[]
+     - constructor takes in no args; the shape is randomly chosen and the color is associated with the shape and the position starts at the top middle (might have to be customized for each shape)
+     - instance variables: color c, String shape, Box[] position 
+     - methods: boolean canMove(int dir) where dir aligns with the index in the neighbors array of the Box
+     - void move(int dir) moves it in the given directly (it should call canMove())
+     - boolean rotate(boolean clockwise) either rotates it CW or CCW by editing the position array and will return false if you can't rotate
 - A method for generating blocks onto the grid. The function maps the int[][] of the block onto the grid, centerd at top, and it copies the colors in the block onto the grid.
 - A method for making blocks fall. Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.
-- In draw, check if any row is full. If yes, cancel out and move all blocks down.
-- keyPressed methods for moving left, right, and dropping
-- Rotation?
+- In draw generally draw periodically as the blocks move down, but we also have to change the screen when a line is cleared or when we rotate or move the blocks
+- keyPressed methods for moving left, right, and dropping, as well as rotation
 
 
     
