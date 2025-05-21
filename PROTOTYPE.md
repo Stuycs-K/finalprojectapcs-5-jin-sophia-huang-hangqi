@@ -22,6 +22,7 @@ Critical Features (Minimum Viable Product):
 
 Nice to have features:
 - Tetris music!!! + settings to turn off music/sfx
+- a score that displays on the screen
 - block falling speeds up as you increase "levels" by clearing some number of lines
 - queue of the 3 tetrominoes that will come next
 - “hold” function — can keep track of one block but can only switch between the falling and “held” block once
@@ -32,6 +33,7 @@ Nice to have features:
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.\
 **List of necessary functions:**
+![Alt text](umldiagram.png?raw=true "Title" ) 
 - A Box class that represents a single box in the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing Color[][], each slot holds the color of that box. The grid is then drawn through Processing.
      - constructor takes in a color and position
      - instance variables: color c, Box[] neighbors, int[] position
@@ -43,7 +45,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - constructor takes in no args; the shape is randomly chosen and the color is associated with the shape and the position starts at the top middle (might have to be customized for each shape)
      - instance variables: color c, String shape, Box[] position 
      - methods: boolean canMove(int dir) where dir aligns with the index in the neighbors array of the Box
-     - void move(int dir) moves it in the given directly (it should call canMove())
+     - void move(int dir) moves it in the given direction (it should call canMove())
      - boolean rotate(boolean clockwise) either rotates it CW or CCW by editing the position array and will return false if you can't rotate
 - A method for generating blocks onto the grid. The function maps the int[][] of the block onto the grid, centerd at top, and it copies the colors in the block onto the grid.
 - A method for making blocks fall. Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.
@@ -54,13 +56,24 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
     
 # Intended pacing:
 
-How you are breaking down the project and who is responsible for which parts.
-
-A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
-
 1. Grid, block, and generate by Friday, 5/23
+     - Box class should be working properly; make sure that things with Boxes on the edge don't work weirdly and make sure to test on those
+     - We should start out with a black grid when we run, but if we purposely put colored Boxes in, they should show up correctly
+     - We should be able to generate blocks randomly. For now, just put them in the middle of the screen so we can see it.
 2. Fall by Monday 5/26
-3. Clear, keyPressed by Wed 5/28
+     - At this point, we should start the blocks from the top
+     - they should fall, and we need to call the next block to start falling once the previous one has fallen
+     - make sure nothing weird happens with passing through blocks by manually starting out with various arrangements of blocks
+3. Clear line, keyPressed (left and right movement, as well as drop) by Wed 5/28
+    - not sure about the details but we probably don't want to erase the entire board every time we make a change, especially if it's with respect to the falling block (it's probably somewhat unavoidable for line clears)
+    - for the drop, make sure the next block will come after that
+    - again, make sure that the blocks will not pass through each other when moving left and right
+    - make sure that you're still able to slide under pieces with the left and right movement as long as it's supposed to be physically possiblez
+    - test clearing different amounts of lines at a time to make sure it all works
 4. Rotation by Fri 5/30
-5. Other features
+    - make sure that T-spins are possible!
+    - be very careful to make sure rotations don't make blocks pass through one another; perhaps turn off the gravity to test various rotation situations
+    - make sure that all types of blocks can be rotated properly
+5. Other features (if possible)
+   - priority order is probably approximately queue, score, hold, increased speed, music, home screen
 
