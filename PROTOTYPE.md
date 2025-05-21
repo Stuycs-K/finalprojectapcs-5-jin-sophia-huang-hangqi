@@ -1,11 +1,6 @@
 
 # Technical Detail:
 
-(CHANGE THIS!!!!!)
-A description of your technical design. This should include: 
-How you will be using the topics covered in class in the project.
-
-
 **PERIOD:** 5\
 **Groupt Members:** Sophia Jin and Hangqi Huang\
 **Group Name:** Metrominoes \
@@ -55,7 +50,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
     
 # Intended pacing:
-
+Ideas to break up the work: Hangqi will work on the graphics and Sophia will work on the classes for the first few phases (1-2). For phase 3, Hangqi will work on the line clearing and block dropping, and Sophia will work on the left and right movement. For phase 4, Hangqi will make the rotations don't make the blocks pass through each other and Sophia will work on the rotation process with the graphics.\
 1. Grid, block, and generate by Friday, 5/23
      - Box class should be working properly; make sure that things with Boxes on the edge don't work weirdly and make sure to test on those
      - We should start out with a black grid when we run, but if we purposely put colored Boxes in, they should show up correctly
@@ -68,7 +63,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
     - not sure about the details but we probably don't want to erase the entire board every time we make a change, especially if it's with respect to the falling block (it's probably somewhat unavoidable for line clears)
     - for the drop, make sure the next block will come after that
     - again, make sure that the blocks will not pass through each other when moving left and right
-    - make sure that you're still able to slide under pieces with the left and right movement as long as it's supposed to be physically possiblez
+    - make sure that you're still able to slide under pieces with the left and right movement as long as it's supposed to be physically possible
     - test clearing different amounts of lines at a time to make sure it all works
 4. Rotation by Fri 5/30
     - make sure that T-spins are possible!
