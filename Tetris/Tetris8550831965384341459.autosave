@@ -32,6 +32,5 @@ void draw(){
     //some code for generating new block
   }
   else{
-    //make curentBlock fall, update the grid, then update currentBlock
-  }
+    
 }
