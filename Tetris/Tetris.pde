@@ -1,4 +1,6 @@
 private Box[][] grid;
+private int[] currentBlock;
+private boolean noChange;
 
 void setup(){
   size(800, 600);
@@ -25,4 +27,8 @@ void drawGrid(int initX, int initY, int size){
 }
 
 void draw(){
+  noChange = true;
+  if(noChange){
+    //some code for generating new block
+  }
 }
