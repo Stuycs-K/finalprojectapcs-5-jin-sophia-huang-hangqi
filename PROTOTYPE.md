@@ -31,7 +31,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 ![Alt text](umldiagram.png?raw=true "Title" ) 
 - A Tetris class containing the following methods and instance variables:
      -private Board grid: a 20*10 grid
-     - private int[] currentBlock: the top left box of the 4*4 color[][] that the dropping block is in.
+     - private int[] currentBlock: format of {i, j, h, w}, where i and j are the coordinate for the top left box, while h and w are how high and wide the box is.
      - private char currentBlockType: the type of block currentBlock is; for rotation
      - void setup(): create the grid and draw it
      - void draw(): check if currentBlock can fall, if yes fall; otherwise, check if any rows can be cancelled, cancel them, then generate new block, set currentBlock
