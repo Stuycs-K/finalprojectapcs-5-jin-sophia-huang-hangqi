@@ -12,3 +12,6 @@ A Box[][] was declared and initialized as grid. grid was then filled up with Box
 
 ### 2025-05-23 - Separated grid and Tetris
 To make things more convenient, I moved Grid.class out from Tetris.class. Need to work on random generation of blocks and fall.
+
+### 2025-05-24 - canFall(), fall(), and others
+Separated Board class and Box class; instead using Box[][], now uses color[][]. Box is now useless, though may need for future additions (?). canFall() and fall() written, seems to work, though more testing is needed.
