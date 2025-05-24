@@ -24,20 +24,20 @@ void setup() {
 }
 
 boolean canFall() {
-  for(int j = 0; j < 4; j++){
+  for (int j = 0; j < 4; j++) {
     boolean first = false;
-    for(int i = 3; i >= 0 && !first; i--){
-      color temp = grid.getColor(currentBlock[0] + i, currentBlock[1] + j);
-      if(temp != color(0)){
-        if(currentBlock[0] + i + 1 < grid.getHeight()){
-          if(grid.getColor(currentBlock[0] + i + 1, currentBlock[1]) != color(0)){
+    for (int i = 3; i >= 0 && !first; i--) {
+      if (currentBlock[0] + i < grid.getHeight()) {
+        if (grid.getColor(currentBlock[0] + i, currentBlock[1] + j) != color(0)) {
+          if (currentBlock[0] + i + 1 < grid.getHeight()) {
+            if (grid.getColor(currentBlock[0] + i + 1, currentBlock[1] + j) != color(0)) {
+              return false;
+            }
+          } else {
             return false;
           }
+          first = true;
         }
-        else{
-          return false;
-        }
-        first = true;
       }
     }
   }
@@ -47,12 +47,14 @@ boolean canFall() {
 void fall() {
   for (int i = 3; i >= 0; i--) {
     for (int j = 0; j < 4; j++) {
-      color temp = grid.getColor(currentBlock[0] + i, currentBlock[1] + j);
-      grid.setColor(currentBlock[0] + i + 1, currentBlock[1] + j, temp);
+      if (currentBlock[0] + i < grid.getHeight()) {
+        color temp = grid.getColor(currentBlock[0] + i, currentBlock[1] + j);
+        if (temp != color(0)) {
+          grid.setColor(currentBlock[0] + i + 1, currentBlock[1] + j, temp);
+          grid.setColor(currentBlock[0] + i, currentBlock[1] + j, color(0));
+        }
+      }
     }
-  }
-  for (int j = 0; j < 4; j++) {
-    grid.setColor(currentBlock[0], currentBlock[1] + j, color(0));
   }
   currentBlock = new int[] {currentBlock[0] + 1, currentBlock[1]};
 }
