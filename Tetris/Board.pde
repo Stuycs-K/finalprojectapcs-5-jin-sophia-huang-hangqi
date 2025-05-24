@@ -27,7 +27,7 @@ public class Board {
   public void setColor(int i, int j, color newColor){
     board[i][j] = newColor;
   }
-  public int getLength(){
+  public int getHeight(){
     return board.length;
   }
   public int getWidth(){

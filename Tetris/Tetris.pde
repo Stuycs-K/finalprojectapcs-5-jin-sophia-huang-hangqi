@@ -24,15 +24,17 @@ void setup() {
 }
 
 boolean canFall() {
-  for (int j = currentBlock[1]; j < currentBlock[1] + 4; j++) {
+  for(int j = 0; j < 4; j++){
     boolean first = false;
-    for (int i = currentBlock[0] + 3; i >= currentBlock[0] && !first; i--) {
-      if (grid.getColor(i, j) == color(0)) {
-        if (i + 1 < grid.getLength()) {
-          if (!(grid.getColor(i + 1, j) == color(0))) {
+    for(int i = 3; i >= 0 && !first; i--){
+      color temp = grid.getColor(currentBlock[0] + i, currentBlock[1] + j);
+      if(temp != color(0)){
+        if(currentBlock[0] + i + 1 < grid.getHeight()){
+          if(grid.getColor(currentBlock[0] + i + 1, currentBlock[1]) != color(0)){
             return false;
           }
-        } else {
+        }
+        else{
           return false;
         }
         first = true;
@@ -42,11 +44,29 @@ boolean canFall() {
   return true;
 }
 
-
+void fall() {
+  for (int i = 3; i >= 0; i--) {
+    for (int j = 0; j < 4; j++) {
+      color temp = grid.getColor(currentBlock[0] + i, currentBlock[1] + j);
+      grid.setColor(currentBlock[0] + i + 1, currentBlock[1] + j, temp);
+    }
+  }
+  for (int j = 0; j < 4; j++) {
+    grid.setColor(currentBlock[0], currentBlock[1] + j, color(0));
+  }
+  currentBlock = new int[] {currentBlock[0] + 1, currentBlock[1]};
+}
 
 void draw() {
   //check if current block can fall; if yes, then make it fall
   //if no fall possible, meaning block has reached ground
   //check if any row can be cancelled
   //generate new block, set current to that block
+  //drawgrid
+  if (frameCount % 30 == 0) {
+    if (canFall()) {
+      fall();
+    }
+    grid.drawGrid();
+  }
 }
