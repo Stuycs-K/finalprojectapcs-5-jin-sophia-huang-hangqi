@@ -29,6 +29,17 @@ Nice to have features:
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.\
 **List of necessary functions:**
 ![Alt text](umldiagram.png?raw=true "Title" ) 
+- A Tetris class containing the following methods and instance variables:
+     -private Board grid: a 20*10 grid
+     - private int[] currentBlock: format of {i, j, h, w}, where i and j are the coordinate for the top left box, while h and w are how high and wide the box is.
+     - private char currentBlockType: the type of block currentBlock is; for rotation
+     - void setup(): create the grid and draw it
+     - void draw(): check if currentBlock can fall, if yes fall; otherwise, check if any rows can be cancelled, cancel them, then generate new block, set currentBlock
+     - void newBlock(): create a tetromino, copy and past the value of the colors onto the middle top of the grid, set currentBlock and currentBlockType
+     - boolean canFall(): can fall if the first colored box from the bottom of each column have an empty box under them
+     - void fall(): move the colors in the 4*4 down, starting from bottom; update currentBlock
+     - boolean canCancel(): check if row is colored in
+     - void cancel(): check if each row can cancel; if yes, clear that row, move everything else down
 - A Box class that represents a single box in the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing Color[][], each slot holds the color of that box. The grid is then drawn through Processing.
      - constructor takes in a color and position
      - instance variables: color c, Box[] neighbors, int[] position
@@ -45,7 +56,8 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - void move(int dir) moves it in the given direction (it should call canMove())
      - boolean rotate(boolean clockwise) either rotates it CW or CCW by editing the position array and will return false if you can't rotate
 - A method for generating blocks onto the grid. The function maps the int[][] of the block onto the grid, centerd at top, and it copies the colors in the block onto the grid.
-- A method for making blocks fall. Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.
+- A method for making blocks fall. ~~Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.~~ Keep track of the 4*4 area that the falling block is in. If canFall(), then move everything down by one.
+- A canFall() method to see if the block can fall.
 - In draw generally draw periodically as the blocks move down, but we also have to change the screen when a line is cleared or when we rotate or move the blocks
 - keyPressed methods for moving left, right, and dropping, as well as rotation
 
@@ -53,11 +65,11 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
     
 # Intended pacing:
 Ideas to break up the work: Hangqi will work on the graphics and Sophia will work on the classes for the first few phases (1-2). For phase 3, Hangqi will work on the line clearing and block dropping, and Sophia will work on the left and right movement. For phase 4, Hangqi will make the rotations don't make the blocks pass through each other and Sophia will work on the rotation process with the graphics.
-1. Grid, block, and generate by Friday, 5/23
+1. Grid, ~~block~~, ~~and generate~~ by Friday, 5/23
      - Box class should be working properly; make sure that things with Boxes on the edge don't work weirdly and make sure to test on those
-     - We should start out with a black grid when we run, but if we purposely put colored Boxes in, they should show up correctly
+     - ✅We should start out with a black grid when we run, but if we purposely put colored Boxes in, they should show up correctly
      - We should be able to generate blocks randomly. For now, just put them in the middle of the screen so we can see it.
-2. Fall by Monday 5/26
+2. Fall, Tetrimino, and generate by Monday 5/26
      - At this point, we should start the blocks from the top
      - they should fall, and we need to call the next block to start falling once the previous one has fallen
      - make sure nothing weird happens with passing through blocks by manually starting out with various arrangements of blocks
