@@ -64,9 +64,9 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 # Intended pacing:
 Ideas to break up the work: Hangqi will work on the graphics and Sophia will work on the classes for the first few phases (1-2). For phase 3, Hangqi will work on the line clearing and block dropping, and Sophia will work on the left and right movement. For phase 4, Hangqi will make the rotations don't make the blocks pass through each other and Sophia will work on the rotation process with the graphics.
 1. Grid, ~~block~~, ~~and generate~~ by Friday, 5/23
-     - Box class should be working properly; make sure that things with Boxes on the edge don't work weirdly and make sure to test on those
+     - ✅Box class should be working properly; make sure that things with Boxes on the edge don't work weirdly and make sure to test on those
      - ✅We should start out with a black grid when we run, but if we purposely put colored Boxes in, they should show up correctly
-     - We should be able to generate blocks randomly. For now, just put them in the middle of the screen so we can see it.
+     - ~~We should be able to generate blocks randomly. For now, just put them in the middle of the screen so we can see it.~~ **moved**
 2. Fall, Tetrimino, and generate by Monday 5/26
      - At this point, we should start the blocks from the top
      - they should fall, and we need to call the next block to start falling once the previous one has fallen
