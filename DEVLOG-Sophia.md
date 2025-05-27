@@ -12,3 +12,6 @@ wrote draw function of Box class and started writing Tetromino instance variable
 
 ### 2024-05-26 - Tetromino class
 made arrays for rotations of tetrominos and started writing method to draw tetrominoes
+
+### 2024-05-27 - Tetromino class
+making methods for move() and canMove(), updated drawMino() method to include if it's "erasing" an old tetromino
