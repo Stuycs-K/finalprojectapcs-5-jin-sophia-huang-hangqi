@@ -1,7 +1,7 @@
 public class Tetromino {
   private color c;
   private char shape;
-  private int[][][] positions;
+  private int[][][] rotations;
   private int currentPosition;
   
   public Tetromino() {
@@ -12,7 +12,7 @@ public class Tetromino {
     shape=shapes[type];
     currentPosition=0;
     if (shape=='O') {
-      positions = new int[][][]
+      rotations = new int[][][]
       {{{0, 0, 0, 0},
       {0, 1, 1, 0}, 
       {0, 1, 1, 0},
@@ -40,7 +40,7 @@ public class Tetromino {
       {0, 1, 0, 0}}};   
     }
     if (shape=='S') {
-       positions = new int[][][]
+       rotations = new int[][][]
       {{{0, 0, 0, 0},
       {0, 0, 1, 1}, 
       {0, 1, 1, 0},
@@ -61,5 +61,102 @@ public class Tetromino {
       {0, 0, 1, 0},
       {0, 0, 0, 0}}};   
     }
+    if (shape=='Z') {
+       rotations = new int[][][]
+      {{{0, 0, 0, 0},
+      {0, 1, 1, 0}, 
+      {0, 0, 1, 1},
+      {0, 0, 0, 0}},
+    
+     {{0, 0, 0, 0},
+      {0, 0, 1, 0}, 
+      {0, 1, 1, 0},
+      {0, 1, 0, 0}},
+    
+     {{0, 0, 0, 0},
+      {1, 1, 0, 0}, 
+      {0, 1, 1, 0},
+      {0, 0, 0, 0}},
+    
+     {{0, 0, 1, 0},
+      {0, 1, 1, 0}, 
+      {0, 1, 0, 0},
+      {0, 0, 0, 0}}};   
+    }
+    if (shape=='L') {
+       rotations = new int[][][]
+      {{{0, 0, 0, 0},
+      {0, 1, 0, 0}, 
+      {0, 1, 0, 0},
+      {0, 1, 1, 0}},
+    
+     {{0, 0, 0, 0},
+      {1, 1, 1, 0}, 
+      {1, 0, 0, 0},
+      {0, 0, 0, 0}},
+    
+     {{0, 1, 1, 0},
+      {0, 0, 1, 0}, 
+      {0, 0, 1, 0},
+      {0, 0, 0, 0}},
+    
+     {{0, 0, 0, 0},
+      {0, 0, 0, 1}, 
+      {0, 1, 1, 1},
+      {0, 0, 0, 0}}};   
+    }
+    if (shape=='J') {
+       rotations = new int[][][]
+      {{{0, 0, 0, 0},
+      {0, 0, 1, 0}, 
+      {0, 0, 1, 0},
+      {0, 1, 1, 0}},
+    
+     {{0, 0, 0, 0},
+      {1, 0, 0, 0}, 
+      {1, 1, 1, 0},
+      {0, 0, 0, 0}},
+    
+     {{0, 1, 1, 0},
+      {0, 1, 0, 0}, 
+      {0, 1, 0, 0},
+      {0, 0, 0, 0}},
+    
+     {{0, 0, 0, 0},
+      {0, 1, 1, 1}, 
+      {0, 0, 0, 1},
+      {0, 0, 0, 0}}};   
+    }
+    if (shape=='T') {
+       rotations = new int[][][]
+      {{{0, 0, 0, 0},
+      {0, 1, 0, 0}, 
+      {1, 1, 1, 0},
+      {0, 0, 0, 0}},
+    
+     {{0, 1, 0, 0},
+      {0, 1, 1, 0}, 
+      {0, 1, 0, 0},
+      {0, 0, 0, 0}},
+    
+     {{0, 0, 0, 0},
+      {0, 1, 1, 1}, 
+      {0, 0, 1, 0},
+      {0, 0, 0, 0}},
+    
+     {{0, 0, 0, 0},
+      {0, 0, 1, 0}, 
+      {0, 1, 1, 0},
+      {0, 0, 1, 0}}};   
+    }
+   }
+   
+   public boolean rotate(boolean cw) {
+     if (cw) {
+       currentPosition=(currentPosition+1)%rotations.length;
+     } else {
+       currentPosition=(currentPosition-1+rotations.length)%rotations.length;
      }
+     return true;
+   }
  }
