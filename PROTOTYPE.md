@@ -36,8 +36,6 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - void setup(): create the grid and draw it
      - void draw(): check if currentBlock can fall, if yes fall; otherwise, check if any rows can be cancelled, cancel them, then generate new block, set currentBlock
      - void newBlock(): create a tetromino, copy and past the value of the colors onto the middle top of the grid, set currentBlock and currentBlockType
-     - boolean canFall(): can fall if the first colored box from the bottom of each column have an empty box under them
-     - void fall(): move the colors in the 4*4 down, starting from bottom; update currentBlock
      - boolean canCancel(): check if row is colored in
      - void cancel(): check if each row can cancel; if yes, clear that row, move everything else down
 - A Box class that represents a single box in the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing Color[][], each slot holds the color of that box. The grid is then drawn through Processing.
