@@ -2,7 +2,8 @@ public class Tetromino {
   private color c;
   private char shape;
   private int[][][] rotations;
-  private int currentPosition;
+  private int currentRotation;
+  private int[] position;
   
   public Tetromino() {
     int[] colors={#e39f02, #0f9bd7, #59b101, #d70f37, #e35b02, #2141c6, #af298a};
@@ -10,7 +11,8 @@ public class Tetromino {
     int type = (int)(7*Math.random());
     c=colors[type];
     shape=shapes[type];
-    currentPosition=0;
+    currentRotation=0;
+    position = new int[]{0, 3};
     if (shape=='O') {
       rotations = new int[][][]
       {{{0, 0, 0, 0},
@@ -18,7 +20,7 @@ public class Tetromino {
       {0, 1, 1, 0},
       {0, 0, 0, 0}}};}
      if (shape=='I') {
-       positions = new int[][][]
+       rotations = new int[][][]
       {{{0, 0, 0, 0},
       {1, 1, 1, 1}, 
       {0, 0, 0, 0},
@@ -153,10 +155,22 @@ public class Tetromino {
    
    public boolean rotate(boolean cw) {
      if (cw) {
-       currentPosition=(currentPosition+1)%rotations.length;
+       currentRotation=(currentRotation+1)%rotations.length;
      } else {
-       currentPosition=(currentPosition-1+rotations.length)%rotations.length;
+       currentRotation=(currentRotation-1+rotations.length)%rotations.length;
      }
      return true;
+   }
+   
+   public void drawMino() {
+     int[][] config = rotations[currentRotation];
+     for (int i=0; i<config.length; i++) {
+       for (int j=0; j<config[i].length; j++) {
+         if (i==1) {
+           Box b = grid.getBox(position[0]+i, position[1]+j);
+           grid.setBox(position[0]+i, position[1]+j, new Box(c, b.getPosition(), b.size));
+         }
+       }
+     }
    }
  }

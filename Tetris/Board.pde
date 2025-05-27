@@ -31,4 +31,12 @@ public class Board {
   public int getWidth(){
     return board[0].length;
   }
+  
+  public Box getBox(int i, int j) {
+    return board[i][j];
+  }
+  
+  public void setBox(int i, int j, Box b) {
+    board[i][j]=b;
+  }
 }
