@@ -15,3 +15,6 @@ To make things more convenient, I moved Grid.class out from Tetris.class. Need t
 
 ### 2025-05-24 - canFall(), fall(), and others
 Separated Board class and Box class; instead using Box[][], now uses color[][]. Box is now useless, though may need for future additions (?). canFall() and fall() written, seems to work, though more testing is needed.
+
+### 2025-05-27 - Integration of Sophia's ideas and my ideas
+We ran into some issues regarding how we each want things to be done. I believe we can work everything out by manipulating the board, but Sophia thinks it's better to put more things in the Tetromino class. Still trying to figure that out. But as long as it works, it works.
