@@ -30,6 +30,10 @@ public class Box {
     c=col;
   }
   
+  int[] getPosition() {
+    return position;
+  }
+  
   void drawBox() {
     stroke(50);
     fill(getColor());
