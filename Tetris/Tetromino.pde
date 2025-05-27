@@ -182,9 +182,14 @@ public class Tetromino {
      }
    }
    
-   //0 is right, 1 is up, 2 is left, 3 is down
+   //w is up, a is left, s is down, d is right
    //but also we're not supposed to be moving up lol
-   public boolean canMove(int dir) {
+   public boolean canMove(char direction) {
+     int dir=0;
+     if (direction=='d') {dir=0;}
+     if (direction=='w') {dir=1;}
+     if (direction=='a') {dir=2;}
+     if (direction=='s') {dir=3;}
      int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
      int[][] config = rotations[currentRotation];
      for (int i=0; i<config.length; i++) {
@@ -204,5 +209,18 @@ public class Tetromino {
        }
      }
      return true;
+   }
+   
+   public void move(char direction) {
+     int dir=0;
+     if (direction=='d') {dir=0;}
+     if (direction=='w') {dir=1;}
+     if (direction=='a') {dir=2;}
+     if (direction=='s') {dir=3;}
+     int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
+     drawMino(false);
+     position[0]+=moves[dir][0];
+     position[0]+=moves[dir][1];
+     drawMino(true);
    }
  }
