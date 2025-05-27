@@ -59,6 +59,7 @@ void fall() {
   currentBlock = new int[] {currentBlock[0] + 1, currentBlock[1]};
 }
 
+
 void draw() {
   //check if current block can fall; if yes, then make it fall
   //if no fall possible, meaning block has reached ground
