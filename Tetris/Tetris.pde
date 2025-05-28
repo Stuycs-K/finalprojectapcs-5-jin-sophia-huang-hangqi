@@ -59,20 +59,20 @@ void newBlock(){
 void keyPressed(){
   if(key == CODED){
     if(keyCode == LEFT){
-      //move left
+      currentBlock.move('a');
     }
     if(keyCode == RIGHT){
-      //move right
+      currentBlock.move('d');
     }
     if(keyCode == UP){
-      //rotate
+      currentBlock.rotate(true);
     }
     if(keyCode == DOWN){
       fall();
     }
   }
   if(key == ' '){
-    //drop
+    drop();
   }
   if(key == 'z' || key == 'Z'){
     currentBlock.rotate(false);
@@ -92,7 +92,7 @@ void draw() {
     }
     else{
       cancel();
-      //newBlock, set current
+      newBlock();
     }
   }
   grid.drawGrid();
