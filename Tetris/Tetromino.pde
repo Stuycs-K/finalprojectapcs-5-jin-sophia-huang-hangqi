@@ -170,12 +170,12 @@ public class Tetromino {
      int[][] config = rotations[currentRotation];
      for (int i=0; i<config.length; i++) {
        for (int j=0; j<config[i].length; j++) {
-         if (i==1) {
+         if (config[i][j]==1) {
            Box b = grid.getBox(position[0]+i, position[1]+j);
            if (newBlock) {
-              grid.setBox(position[0]+i, position[1]+j, new Box(c, b.getPosition(), b.size));
+             b.setColor(c);
            } else {
-             grid.setBox(position[0]+i, position[1]+j, new Box(0, b.getPosition(), b.size));
+             b.setColor(0);
            }
          }
        }
@@ -194,16 +194,20 @@ public class Tetromino {
      int[][] config = rotations[currentRotation];
      for (int i=0; i<config.length; i++) {
        for (int j=0; j<config[i].length; j++) {
-         if (i==1) {
+         if (config[i][j]==1) {
            int row=i+position[0]+moves[dir][0];
             int col=j+position[1]+moves[dir][1];
            try {
              if (grid.getBox(row, col).isNotEmpty()) {
-               return false;
+               try {
+                 if (config[i+moves[dir][0]][j+moves[dir][1]]==0) {
+                   return false;
+                 }
+               } catch(IndexOutOfBoundsException ex) {}
              }
            } catch (IndexOutOfBoundsException ex) {
-             if (row>grid.getHeight()) {return false;}
-             if (col<0 && col>grid.getWidth()) {return false;}
+             if (row>=grid.getHeight()) {return false;}
+             if (col<0 || col>=grid.getWidth()) {return false;}
            }
          }
        }
