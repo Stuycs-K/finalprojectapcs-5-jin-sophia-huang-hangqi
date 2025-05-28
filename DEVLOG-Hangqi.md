@@ -19,5 +19,8 @@ Separated Board class and Box class; instead using Box[][], now uses color[][]. 
 ### 2025-05-27 - Integration of Sophia's ideas and my ideas
 We ran into some issues regarding how we each want things to be done. I believe we can work everything out by manipulating the board, but Sophia thinks it's better to put more things in the Tetromino class. Still trying to figure that out. But as long as it works, it works.
 
-## 2025-05-27 - Stalled Progress
+### 2025-05-27 - Stalled Progress
 There are issues with canMove(), which causes really big issues with everything. I can not attempt to fix it because I don't know where I should start. The method should be split into parts, or else a really length method. The method is too general. Wrote canCancel() and cancel(), but can not test. Wrote drop, but can not test because canMove() and move() is broken. keyPressed setup. End of report
+
+### 2025-05-28 - newBlock()
+Added z key for rotation. wrote new block, not tested.
