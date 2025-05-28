@@ -1,6 +1,5 @@
 private Board grid;
 private Tetromino currentBlock;
-private char currentBlockType;
 
 void setup() {
   size(800, 600);
@@ -52,6 +51,11 @@ void drop(){
   }
 }
 
+void newBlock(){
+  currentBlock = new Tetromino();
+  currentBlock.drawMino(true);
+}
+
 void keyPressed(){
   if(key == CODED){
     if(keyCode == LEFT){
@@ -69,6 +73,9 @@ void keyPressed(){
   }
   if(key == ' '){
     //drop
+  }
+  if(key == 'z' || key == 'Z'){
+    currentBlock.rotate(false);
   }
   grid.drawGrid();
 }
