@@ -94,6 +94,6 @@ void draw() {
       cancel();
       newBlock();
     }
+    grid.drawGrid();
   }
-  grid.drawGrid();
 }
