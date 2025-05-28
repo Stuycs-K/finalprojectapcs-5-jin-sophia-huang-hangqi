@@ -224,7 +224,7 @@ public class Tetromino {
      int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
      drawMino(false);
      position[0]+=moves[dir][0];
-     position[0]+=moves[dir][1];
+     position[1]+=moves[dir][1];
      drawMino(true);
    }
  }
