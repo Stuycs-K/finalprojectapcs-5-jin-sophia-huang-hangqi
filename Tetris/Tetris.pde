@@ -90,10 +90,6 @@ void draw() {
     if(canFall()){
       fall();
     }
-    else{
-      cancel();
-      //newBlock, set current
-    }
   }
   grid.drawGrid();
 }
