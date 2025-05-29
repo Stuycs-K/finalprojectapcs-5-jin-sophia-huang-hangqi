@@ -51,6 +51,11 @@ void drop(){
   }
 }
 
+void newBlock(){
+  currentBlock = new Tetromino();
+  currentBlock.drawMino(true);
+}
+
 void keyPressed(){
   if(key == CODED){
     if(keyCode == LEFT){
@@ -86,8 +91,10 @@ void draw() {
   if (frameCount % 30 == 0) {
     if(canFall()){
       fall();
-    } else {
-      currentBlock = new Tetromino();
+    }
+    else{
+      //cancel();
+      newBlock();
     }
     grid.drawGrid();
   }
