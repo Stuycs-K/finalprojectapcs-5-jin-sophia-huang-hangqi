@@ -19,3 +19,7 @@ making methods for move() and canMove(), updated drawMino() method to include if
 ### 2025-05-28 - Tetromino class
 trying to fix the canMove() method\
 fixed the canMove() method! tetrominoes fall correctly, generate new one upon falling
+
+### 2025-05-29 - Tetromino class
+fixed the move() method to call the canMove() method so blocks don't pass through each other/the walls\
+fixed the line clearing method, it now works!

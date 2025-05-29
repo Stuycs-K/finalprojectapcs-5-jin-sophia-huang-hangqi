@@ -16,6 +16,7 @@ Critical Features (Minimum Viable Product):
 - key controls for moving left/right and dropping
 
 Nice to have features:
+- ghostly image of where the tetromino should fall (new!)
 - Tetris music!!! + settings to turn off music/sfx
 - a score that displays on the screen
 - block falling speeds up as you increase "levels" by clearing some number of lines
@@ -50,8 +51,8 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 - An ~~Block~~ Tetromino class that represents each type of block. The type of block is stored as a variable in the class, and is represented by a Box[]
      - ✅ constructor takes in no args; the shape is randomly chosen and the color is associated with the shape and the position starts at the top middle (might have to be customized for each shape)
      - ✅ instance variables: color c, String shape, ~~Box[] position~~ int[] position, int[][][] rotations (array of 2d arrays that each represent a possible rotation of the piece) (new!), int currentRotation (index in rotations) (new!)
-     - methods: boolean canMove(int dir) where dir aligns with the index in the neighbors array of the Box
-     - void move(int dir) moves it in the given direction (it should call canMove())
+     - ✅ methods: boolean canMove(int dir) where dir aligns with the index in the neighbors array of the Box
+     - ✅ void move(int dir) moves it in the given direction (it should call canMove())
      - ✅ boolean rotate(boolean clockwise) either rotates it CW or CCW by editing the position array and will return false if you can't rotate
      - ✅ A method for generating blocks onto the grid (we named this drawMino()). The function maps the int[][] of the block onto the grid, ~~centerd at top~~ based on the position of the bottom left square, and it copies the colors in the block onto the grid.
 - ~~A method for making blocks fall. ~~Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.~~ Keep track of the 4*4 area that the falling block is in. If canFall(), then move everything down by one.~~
@@ -71,11 +72,11 @@ Ideas to break up the work: Hangqi will work on the graphics and Sophia will wor
      - ✅ At this point, we should start the blocks from the top
      - ✅ they should fall
      - ✅ we need to call the next block to start falling once the previous one has fallen
-     - make sure nothing weird happens with passing through blocks by manually starting out with various arrangements of blocks
+     - ✅ make sure nothing weird happens with passing through blocks by manually starting out with various arrangements of blocks
 3. Clear line, keyPressed (left and right movement, as well as drop) by Wed 5/28
-    - not sure about the details but we probably don't want to erase the entire board every time we make a change, especially if it's with respect to the falling block (it's probably somewhat unavoidable for line clears)
-    - for the drop, make sure the next block will come after that
-    - again, make sure that the blocks will not pass through each other when moving left and right
+    - ~~not sure about the details but we probably don't want to erase the entire board every time we make a change, especially if it's with respect to the falling block (it's probably somewhat unavoidable for line clears)~~
+    - ✅ for the drop, make sure the next block will come after that
+    - ✅ again, make sure that the blocks will not pass through each other when moving left and right
     - make sure that you're still able to slide under pieces with the left and right movement as long as it's supposed to be physically possible
     - test clearing different amounts of lines at a time to make sure it all works
 4. Rotation by Fri 5/30
@@ -83,5 +84,5 @@ Ideas to break up the work: Hangqi will work on the graphics and Sophia will wor
     - be very careful to make sure rotations don't make blocks pass through one another; perhaps turn off the gravity to test various rotation situations
     - make sure that all types of blocks can be rotated properly
 5. Other features (if possible)
-   - priority order is probably approximately queue, score, hold, increased speed, music, home screen
+   - priority order is probably approximately image, queue, score, hold, increased speed, music, home screen
 
