@@ -24,3 +24,6 @@ There are issues with canMove(), which causes really big issues with everything.
 
 ### 2025-05-28 - newBlock()
 Added z key for rotation. wrote new block, not tested.
+
+### 2025-05-28 - Stalled Progress
+Fixed some minor things. Waiting for canMove() to be fixed. Attempted fix, but things are so complicated that it feels like a junk pile.

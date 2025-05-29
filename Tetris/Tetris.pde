@@ -59,20 +59,22 @@ void newBlock(){
 void keyPressed(){
   if(key == CODED){
     if(keyCode == LEFT){
-      //move left
+      currentBlock.move('a');
     }
     if(keyCode == RIGHT){
-      //move right
+      currentBlock.move('d');
     }
     if(keyCode == UP){
-      //rotate
+      currentBlock.rotate(true);
     }
     if(keyCode == DOWN){
       fall();
     }
   }
   if(key == ' '){
-    //drop
+    while(canFall()){
+      fall();
+    }
   }
   if(key == 'z' || key == 'Z'){
     currentBlock.rotate(false);
@@ -89,11 +91,9 @@ void draw() {
   if (frameCount % 30 == 0) {
     if(canFall()){
       fall();
+    } else {
+      currentBlock = new Tetromino();
     }
-    else{
-      cancel();
-      //newBlock, set current
-    }
+    grid.drawGrid();
   }
-  grid.drawGrid();
 }
