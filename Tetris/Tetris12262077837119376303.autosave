@@ -1,10 +1,5 @@
 private Board grid;
 private Tetromino currentBlock;
-private int turnsUntilFall=0;
-public static final int MOVE_RIGHT=0;
-public static final int MOVE_UP=1;
-public static final int MOVE_LEFT=2;
-public static final int MOVE_DOWN=3;
 
 void setup() {
   size(800, 600);
@@ -15,30 +10,27 @@ void setup() {
 }
 
 boolean canFall() {
-  return currentBlock.canMove(MOVE_DOWN);
+  return currentBlock.canMove('s');
 }
 
 void fall() {
   if (canFall()) {
-    currentBlock.move(MOVE_DOWN);
+    currentBlock.move('s');
   }
 }
 
 boolean canCancel(int row){
   for(int j = 0; j < grid.getWidth(); j++){
-    if(grid.getColor(row, j) == 0){
-      println("false "+row);
+    if(grid.getColor(row, j) == color(0)){
       return false;
     }
   }
-  println("true "+row);
   return true;
 }
 
 void cancel(){
   for(int i = grid.getHeight() - 1; i >= 0; i--){
     if(canCancel(i)){
-      System.out.println("canceled row "+i);
       for(int j = 0; j < grid.getWidth(); j++){
         grid.setColor(i, j, color(0));
       }
@@ -48,8 +40,7 @@ void cancel(){
           grid.setColor(rowsAbove + 1, j, temp);
         }
       }
-      i++;
-      //grid.drawGrid();
+      grid.drawGrid();
     }
   }
 }
@@ -60,13 +51,18 @@ void drop(){
   }
 }
 
+void newBlock(){
+  currentBlock = new Tetromino();
+  currentBlock.drawMino(true);
+}
+
 void keyPressed(){
   if(key == CODED){
     if(keyCode == LEFT){
-      currentBlock.move(MOVE_LEFT);
+      currentBlock.move('a');
     }
     if(keyCode == RIGHT){
-      currentBlock.move(MOVE_RIGHT);
+      currentBlock.move('d');
     }
     if(keyCode == UP){
       currentBlock.rotate(true);
@@ -78,7 +74,6 @@ void keyPressed(){
   if(key == ' '){
     while(canFall()){
       fall();
-      turnsUntilFall=1;
     }
   }
   if(key == 'z' || key == 'Z'){
@@ -93,19 +88,13 @@ void draw() {
   //check if any row can be cancelled
   //generate new block, set current to that block
   //drawgrid
-  if (frameCount % 20 == 0) {
+  if (frameCount % 30 == 0) {
     if(canFall()){
       fall();
-    } else {
-      cancel();
-      if (turnsUntilFall==0) {
-        turnsUntilFall=2;
-      } else if (turnsUntilFall>1) {
-        turnsUntilFall--;
-      } else if (turnsUntilFall==1) {
-        turnsUntilFall=0;
-        currentBlock = new Tetromino();
-      }
+    }
+    else{
+      //cancel();
+      newBlock();
     }
     grid.drawGrid();
   }

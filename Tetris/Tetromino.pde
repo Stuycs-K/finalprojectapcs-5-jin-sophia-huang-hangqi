@@ -12,7 +12,7 @@
     c=colors[type];
     shape=shapes[type];
     currentRotation=0;
-    position = new int[]{0, 3};
+    position = new int[]{-3, 3};
     if (shape=='O') {
       rotations = new int[][][]
       {{{0, 0, 0, 0},
@@ -171,12 +171,14 @@
      for (int i=0; i<config.length; i++) {
        for (int j=0; j<config[i].length; j++) {
          if (config[i][j]==1) {
-           Box b = grid.getBox(position[0]+i, position[1]+j);
-           if (newBlock) {
-             b.setColor(c);
-           } else {
-             b.setColor(0);
-           }
+           try {
+             Box b = grid.getBox(position[0]+i, position[1]+j);
+             if (newBlock) {
+               b.setColor(c);
+             } else {
+               b.setColor(0);
+             }
+           } catch (IndexOutOfBoundsException ex) {}
          }
        }
      }
@@ -184,12 +186,7 @@
    
    //w is up, a is left, s is down, d is right
    //but also we're not supposed to be moving up lol
-   public boolean canMove(char direction) {
-     int dir=0;
-     if (direction=='d') {dir=0;}
-     if (direction=='w') {dir=1;}
-     if (direction=='a') {dir=2;}
-     if (direction=='s') {dir=3;}
+   public boolean canMove(int dir) {
      int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
      int[][] config = rotations[currentRotation];
      for (int i=0; i<config.length; i++) {
@@ -215,16 +212,13 @@
      return true;
    }
    
-   public void move(char direction) {
-     int dir=0;
-     if (direction=='d') {dir=0;}
-     if (direction=='w') {dir=1;}
-     if (direction=='a') {dir=2;}
-     if (direction=='s') {dir=3;}
-     int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
-     drawMino(false);
-     position[0]+=moves[dir][0];
-     position[1]+=moves[dir][1];
-     drawMino(true);
+   public void move(int dir) {
+     if (canMove(dir)) {
+       int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
+       drawMino(false);
+       position[0]+=moves[dir][0];
+       position[1]+=moves[dir][1];
+       drawMino(true);
+     }
    }
  }
