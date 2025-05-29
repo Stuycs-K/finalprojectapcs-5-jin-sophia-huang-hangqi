@@ -1,62 +1,83 @@
 private Board grid;
-private int[] currentBlock;
-private char currentBlockType;
+private Tetromino currentBlock;
 
 void setup() {
   size(800, 600);
   grid = new Board();
-  color randomColor = color((float) random(256), (float) random(256), (float) random(256));
-  color[][] block = {
-    {color(0), color(0), color(0), color(0)},
-    {randomColor, randomColor, randomColor, randomColor},
-    {color(0), color(0), color(0), color(0)},
-    {color(0), color(0), color(0), color(0)}
-  };
-  currentBlock = new int[] {0, 3};
-  currentBlockType = 'I';
-  for (int i = 0; i < 4; i++) {
-    for (int j = 0; j < 4; j++) {
-      color temp = block[i][j];
-      grid.setColor(currentBlock[0] + i, currentBlock[1] + j, temp);
-    }
-  }
+  currentBlock = new Tetromino();
+  currentBlock.drawMino(true);
   grid.drawGrid();
 }
 
 boolean canFall() {
-  for (int j = 0; j < 4; j++) {
-    boolean first = false;
-    for (int i = 3; i >= 0 && !first; i--) {
-      if (currentBlock[0] + i < grid.getHeight()) {
-        if (grid.getColor(currentBlock[0] + i, currentBlock[1] + j) != color(0)) {
-          if (currentBlock[0] + i + 1 < grid.getHeight()) {
-            if (grid.getColor(currentBlock[0] + i + 1, currentBlock[1] + j) != color(0)) {
-              return false;
-            }
-          } else {
-            return false;
-          }
-          first = true;
-        }
-      }
+  return currentBlock.canMove('s');
+}
+
+void fall() {
+  if (canFall()) {
+    currentBlock.move('s');
+  }
+}
+
+boolean canCancel(int row){
+  for(int j = 0; j < grid.getWidth(); j++){
+    if(grid.getColor(row, j) == color(0)){
+      return false;
     }
   }
   return true;
 }
 
-void fall() {
-  for (int i = 3; i >= 0; i--) {
-    for (int j = 0; j < 4; j++) {
-      if (currentBlock[0] + i < grid.getHeight()) {
-        color temp = grid.getColor(currentBlock[0] + i, currentBlock[1] + j);
-        if (temp != color(0)) {
-          grid.setColor(currentBlock[0] + i + 1, currentBlock[1] + j, temp);
-          grid.setColor(currentBlock[0] + i, currentBlock[1] + j, color(0));
+void cancel(){
+  for(int i = grid.getHeight() - 1; i >= 0; i--){
+    if(canCancel(i)){
+      for(int j = 0; j < grid.getWidth(); j++){
+        grid.setColor(i, j, color(0));
+      }
+      for(int rowsAbove = i - 1; rowsAbove >= 0; rowsAbove--){
+        for(int j = 0; j < grid.getWidth(); j++){
+          color temp = grid.getColor(rowsAbove, j);
+          grid.setColor(rowsAbove + 1, j, temp);
         }
       }
+      grid.drawGrid();
     }
   }
-  currentBlock = new int[] {currentBlock[0] + 1, currentBlock[1]};
+}
+
+void drop(){
+  while(canFall()){
+    fall();
+  }
+}
+
+void newBlock(){
+  currentBlock = new Tetromino();
+  currentBlock.drawMino(true);
+}
+
+void keyPressed(){
+  if(key == CODED){
+    if(keyCode == LEFT){
+      //move left
+    }
+    if(keyCode == RIGHT){
+      //move right
+    }
+    if(keyCode == UP){
+      //rotate
+    }
+    if(keyCode == DOWN){
+      fall();
+    }
+  }
+  if(key == ' '){
+    //drop
+  }
+  if(key == 'z' || key == 'Z'){
+    currentBlock.rotate(false);
+  }
+  grid.drawGrid();
 }
 
 void draw() {
@@ -66,9 +87,9 @@ void draw() {
   //generate new block, set current to that block
   //drawgrid
   if (frameCount % 30 == 0) {
-    if (canFall()) {
+    if(canFall()){
       fall();
     }
-    grid.drawGrid();
   }
+  grid.drawGrid();
 }
