@@ -1,5 +1,6 @@
 private Board grid;
 private Tetromino currentBlock;
+private int turnsUntilFall=0;
 public static final int MOVE_RIGHT=0;
 public static final int MOVE_UP=1;
 public static final int MOVE_LEFT=2;
@@ -77,6 +78,7 @@ void keyPressed(){
   if(key == ' '){
     while(canFall()){
       fall();
+      turnsUntilFall=1;
     }
   }
   if(key == 'z' || key == 'Z'){
@@ -91,12 +93,19 @@ void draw() {
   //check if any row can be cancelled
   //generate new block, set current to that block
   //drawgrid
-  if (frameCount % 30 == 0) {
+  if (frameCount % 20 == 0) {
     if(canFall()){
       fall();
     } else {
-      //cancel();
-      currentBlock = new Tetromino();
+      cancel();
+      if (turnsUntilFall==0) {
+        turnsUntilFall=2;
+      } else if (turnsUntilFall>1) {
+        turnsUntilFall--;
+      } else if (turnsUntilFall==1) {
+        turnsUntilFall=0;
+        currentBlock = new Tetromino();
+      }
     }
     grid.drawGrid();
   }
