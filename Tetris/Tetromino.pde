@@ -12,7 +12,7 @@
     c=colors[type];
     shape=shapes[type];
     currentRotation=0;
-    position = new int[]{0, 3};
+    position = new int[]{-3, 3};
     if (shape=='O') {
       rotations = new int[][][]
       {{{0, 0, 0, 0},
@@ -171,12 +171,14 @@
      for (int i=0; i<config.length; i++) {
        for (int j=0; j<config[i].length; j++) {
          if (config[i][j]==1) {
-           Box b = grid.getBox(position[0]+i, position[1]+j);
-           if (newBlock) {
-             b.setColor(c);
-           } else {
-             b.setColor(0);
-           }
+           try {
+             Box b = grid.getBox(position[0]+i, position[1]+j);
+             if (newBlock) {
+               b.setColor(c);
+             } else {
+               b.setColor(0);
+             }
+           } catch (IndexOutOfBoundsException ex) {}
          }
        }
      }
