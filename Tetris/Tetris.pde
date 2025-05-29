@@ -89,6 +89,8 @@ void draw() {
   if (frameCount % 30 == 0) {
     if(canFall()){
       fall();
+    } else {
+      currentBlock = new Tetromino();
     }
   }
   grid.drawGrid();
