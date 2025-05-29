@@ -8,12 +8,12 @@
 We're are making a game of Tetris. In Tetris, tetrominoes are dropped and they fall faster and faster as the time goes on. There are 7 tetrominoes (I, O, T, S, Z, L, J), and we use keys to rotate them and move them around. Fill a row to clear the row. You get more points for feats like tetris (clearing four rows at once) or T-spins or combos. This will attempt to completely replicate the original Tetris game.\
 **Expanded Description:**\
 Critical Features (Minimum Viable Product):
-- Representation of grid using array or Deque
-- Randomized block generation
-- block should fall down but pause before settling
-- Cancel out row once complete
-- key controls for rotation of blocks
-- key controls for moving left/right and dropping
+- ✅ Representation of grid using array or Deque
+- ✅ Randomized block generation
+- ✅ block should fall down but pause before settling
+- ✅ Cancel out row once complete
+- ✅ key controls for rotation of blocks
+- ✅ key controls for moving left/right and dropping
 
 Nice to have features:
 - ghostly image of where the tetromino should fall (new!)
@@ -77,8 +77,8 @@ Ideas to break up the work: Hangqi will work on the graphics and Sophia will wor
     - ~~not sure about the details but we probably don't want to erase the entire board every time we make a change, especially if it's with respect to the falling block (it's probably somewhat unavoidable for line clears)~~
     - ✅ for the drop, make sure the next block will come after that
     - ✅ again, make sure that the blocks will not pass through each other when moving left and right
-    - make sure that you're still able to slide under pieces with the left and right movement as long as it's supposed to be physically possible
-    - test clearing different amounts of lines at a time to make sure it all works
+    - ✅ make sure that you're still able to slide under pieces with the left and right movement as long as it's supposed to be physically possible
+    - ✅ test clearing different amounts of lines at a time to make sure it all works
 4. Rotation by Fri 5/30
     - make sure that T-spins are possible!
     - be very careful to make sure rotations don't make blocks pass through one another; perhaps turn off the gravity to test various rotation situations
