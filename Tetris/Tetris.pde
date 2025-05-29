@@ -88,7 +88,7 @@ void draw() {
     if(canFall()){
       fall();
     } else {
-      cancel();
+      //cancel();
       currentBlock = new Tetromino();
     }
     grid.drawGrid();

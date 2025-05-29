@@ -199,7 +199,7 @@
          if (config[i][j]==1) {
            int row=i+position[0]+moves[dir][0];
            int col=j+position[1]+moves[dir][1];
-           System.out.println(row+" "+col);
+           //System.out.println(row+" "+col);
            try {
              if (grid.getBox(row, col).isNotEmpty()) {
                try {
