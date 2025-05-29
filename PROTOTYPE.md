@@ -72,11 +72,11 @@ Ideas to break up the work: Hangqi will work on the graphics and Sophia will wor
      - ✅ At this point, we should start the blocks from the top
      - ✅ they should fall
      - ✅ we need to call the next block to start falling once the previous one has fallen
-     - make sure nothing weird happens with passing through blocks by manually starting out with various arrangements of blocks
+     - ✅ make sure nothing weird happens with passing through blocks by manually starting out with various arrangements of blocks
 3. Clear line, keyPressed (left and right movement, as well as drop) by Wed 5/28
-    - not sure about the details but we probably don't want to erase the entire board every time we make a change, especially if it's with respect to the falling block (it's probably somewhat unavoidable for line clears)
-    - for the drop, make sure the next block will come after that
-    - again, make sure that the blocks will not pass through each other when moving left and right
+    - ~~not sure about the details but we probably don't want to erase the entire board every time we make a change, especially if it's with respect to the falling block (it's probably somewhat unavoidable for line clears)~~
+    - ✅ for the drop, make sure the next block will come after that
+    - ✅ again, make sure that the blocks will not pass through each other when moving left and right
     - make sure that you're still able to slide under pieces with the left and right movement as long as it's supposed to be physically possible
     - test clearing different amounts of lines at a time to make sure it all works
 4. Rotation by Fri 5/30
