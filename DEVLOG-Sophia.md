@@ -17,4 +17,5 @@ made arrays for rotations of tetrominos and started writing method to draw tetro
 making methods for move() and canMove(), updated drawMino() method to include if it's "erasing" an old tetromino
 
 ### 2025-05-28 - Tetromino class
-trying to fix the canMove() method
+trying to fix the canMove() method\
+fixed the canMove() method! tetrominoes fall correctly, generate new one upon falling
