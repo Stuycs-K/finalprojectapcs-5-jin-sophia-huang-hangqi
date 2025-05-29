@@ -41,10 +41,10 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - void cancel(): check if each row can cancel; if yes, clear that row, move everything else down
 - A Box class that represents a single box in the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing Color[][], each slot holds the color of that box. The grid is then drawn through Processing.
      - constructor takes in a color and position
-     - instance variables: color c, Box[] neighbors, int[] position
+     - instance variables: color c, ~~Box[] neighbors~~, int[] position
      - methods: boolean isNotEmpty() tells whether the Box actually has a tetris block in it
-     - Box getNeighbor(int dir) returns neighbors[dir]
-     - void setNeighbor(Box b, int index) sets neighbor[index] to b (new!) 
+     - ~~Box getNeighbor(int dir) returns neighbors[dir]~~
+     - ~~void setNeighbor(Box b, int index) sets neighbor[index] to b (new!)~~
      - color getColor()
      - void setColor(color c)
      - void drawBox() draws the given Box (new!)
