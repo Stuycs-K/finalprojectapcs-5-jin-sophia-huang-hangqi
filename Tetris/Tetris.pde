@@ -21,6 +21,7 @@ void fall() {
 
 boolean canCancel(int row){
   for(int j = 0; j < grid.getWidth(); j++){
+    println(grid.getColor(row, j) == color(0));
     if(grid.getColor(row, j) == color(0)){
       return false;
     }
@@ -40,7 +41,7 @@ void cancel(){
           grid.setColor(rowsAbove + 1, j, temp);
         }
       }
-      grid.drawGrid();
+      //grid.drawGrid();
     }
   }
 }
@@ -87,6 +88,7 @@ void draw() {
     if(canFall()){
       fall();
     } else {
+      cancel();
       currentBlock = new Tetromino();
     }
     grid.drawGrid();
