@@ -94,10 +94,6 @@ void draw() {
     } else {
       currentBlock = new Tetromino();
     }
-    else{
-      cancel();
-      newBlock();
-    }
     grid.drawGrid();
   }
 }
