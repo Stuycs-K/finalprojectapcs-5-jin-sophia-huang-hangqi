@@ -1,4 +1,4 @@
-  public class Tetromino {
+ public class Tetromino {
   private color c;
   private char shape;
   private int[][][] rotations;
