@@ -21,17 +21,19 @@ void fall() {
 
 boolean canCancel(int row){
   for(int j = 0; j < grid.getWidth(); j++){
-    println(grid.getColor(row, j) == color(0));
-    if(grid.getColor(row, j) == color(0)){
+    if(grid.getColor(row, j) == 0){
+      println("false "+row);
       return false;
     }
   }
+  println("true "+row);
   return true;
 }
 
 void cancel(){
   for(int i = grid.getHeight() - 1; i >= 0; i--){
     if(canCancel(i)){
+      System.out.println("canceled row "+i);
       for(int j = 0; j < grid.getWidth(); j++){
         grid.setColor(i, j, color(0));
       }
@@ -41,6 +43,7 @@ void cancel(){
           grid.setColor(rowsAbove + 1, j, temp);
         }
       }
+      i++;
       //grid.drawGrid();
     }
   }
