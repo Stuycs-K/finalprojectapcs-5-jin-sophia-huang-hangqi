@@ -199,6 +199,7 @@
          if (config[i][j]==1) {
            int row=i+position[0]+moves[dir][0];
            int col=j+position[1]+moves[dir][1];
+           System.out.println(row+" "+col);
            try {
              if (grid.getBox(row, col).isNotEmpty()) {
                try {
@@ -218,15 +219,17 @@
    }
    
    public void move(char direction) {
-     int dir=0;
-     if (direction=='d') {dir=0;}
-     if (direction=='w') {dir=1;}
-     if (direction=='a') {dir=2;}
-     if (direction=='s') {dir=3;}
-     int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
-     drawMino(false);
-     position[0]+=moves[dir][0];
-     position[1]+=moves[dir][1];
-     drawMino(true);
+     if (canMove(direction)) {
+       int dir=0;
+       if (direction=='d') {dir=0;}
+       if (direction=='w') {dir=1;}
+       if (direction=='a') {dir=2;}
+       if (direction=='s') {dir=3;}
+       int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
+       drawMino(false);
+       position[0]+=moves[dir][0];
+       position[1]+=moves[dir][1];
+       drawMino(true);
+     }
    }
  }
