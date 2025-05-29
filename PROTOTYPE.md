@@ -16,6 +16,7 @@ Critical Features (Minimum Viable Product):
 - key controls for moving left/right and dropping
 
 Nice to have features:
+- ghostly image of where the tetromino should fall (new!)
 - Tetris music!!! + settings to turn off music/sfx
 - a score that displays on the screen
 - block falling speeds up as you increase "levels" by clearing some number of lines
@@ -83,5 +84,5 @@ Ideas to break up the work: Hangqi will work on the graphics and Sophia will wor
     - be very careful to make sure rotations don't make blocks pass through one another; perhaps turn off the gravity to test various rotation situations
     - make sure that all types of blocks can be rotated properly
 5. Other features (if possible)
-   - priority order is probably approximately queue, score, hold, increased speed, music, home screen
+   - priority order is probably approximately image, queue, score, hold, increased speed, music, home screen
 
