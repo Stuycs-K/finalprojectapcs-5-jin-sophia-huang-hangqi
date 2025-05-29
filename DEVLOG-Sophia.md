@@ -22,4 +22,5 @@ fixed the canMove() method! tetrominoes fall correctly, generate new one upon fa
 
 ### 2025-05-29 - Tetromino class
 fixed the move() method to call the canMove() method so blocks don't pass through each other/the walls\
-fixed the line clearing method, it now works!
+fixed the line clearing method, it now works!\
+made the blocks pause at the bottom if you don't drop them with space so that you can still move them around
