@@ -1,5 +1,9 @@
 private Board grid;
 private Tetromino currentBlock;
+public static final int MOVE_RIGHT=0;
+public static final int MOVE_UP=1;
+public static final int MOVE_LEFT=2;
+public static final int MOVE_DOWN=3;
 
 void setup() {
   size(800, 600);
@@ -10,12 +14,12 @@ void setup() {
 }
 
 boolean canFall() {
-  return currentBlock.canMove('s');
+  return currentBlock.canMove(MOVE_DOWN);
 }
 
 void fall() {
   if (canFall()) {
-    currentBlock.move('s');
+    currentBlock.move(MOVE_DOWN);
   }
 }
 
@@ -58,10 +62,10 @@ void drop(){
 void keyPressed(){
   if(key == CODED){
     if(keyCode == LEFT){
-      currentBlock.move('a');
+      currentBlock.move(MOVE_LEFT);
     }
     if(keyCode == RIGHT){
-      currentBlock.move('d');
+      currentBlock.move(MOVE_RIGHT);
     }
     if(keyCode == UP){
       currentBlock.rotate(true);

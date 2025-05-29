@@ -186,12 +186,7 @@
    
    //w is up, a is left, s is down, d is right
    //but also we're not supposed to be moving up lol
-   public boolean canMove(char direction) {
-     int dir=0;
-     if (direction=='d') {dir=0;}
-     if (direction=='w') {dir=1;}
-     if (direction=='a') {dir=2;}
-     if (direction=='s') {dir=3;}
+   public boolean canMove(int dir) {
      int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
      int[][] config = rotations[currentRotation];
      for (int i=0; i<config.length; i++) {
@@ -217,13 +212,8 @@
      return true;
    }
    
-   public void move(char direction) {
-     if (canMove(direction)) {
-       int dir=0;
-       if (direction=='d') {dir=0;}
-       if (direction=='w') {dir=1;}
-       if (direction=='a') {dir=2;}
-       if (direction=='s') {dir=3;}
+   public void move(int dir) {
+     if (canMove(dir)) {
        int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
        drawMino(false);
        position[0]+=moves[dir][0];
