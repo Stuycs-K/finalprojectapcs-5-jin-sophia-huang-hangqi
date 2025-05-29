@@ -53,7 +53,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - methods: boolean canMove(int dir) where dir aligns with the index in the neighbors array of the Box
      - void move(int dir) moves it in the given direction (it should call canMove())
      - ✅ boolean rotate(boolean clockwise) either rotates it CW or CCW by editing the position array and will return false if you can't rotate
-- ✅ A method for generating blocks onto the grid (we named this drawMino()). The function maps the int[][] of the block onto the grid, ~~centerd at top~~ based on the position of the bottom left square, and it copies the colors in the block onto the grid.
+     - ✅ A method for generating blocks onto the grid (we named this drawMino()). The function maps the int[][] of the block onto the grid, ~~centerd at top~~ based on the position of the bottom left square, and it copies the colors in the block onto the grid.
 - ~~A method for making blocks fall. ~~Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.~~ Keep track of the 4*4 area that the falling block is in. If canFall(), then move everything down by one.~~
 - ~~A canFall() method to see if the block can fall.~~ (fall and canFall are redundant with the move method)
 - In draw generally draw periodically as the blocks move down, but we also have to change the screen when a line is cleared or when we rotate or move the blocks
