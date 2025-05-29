@@ -20,7 +20,9 @@ making methods for move() and canMove(), updated drawMino() method to include if
 trying to fix the canMove() method\
 fixed the canMove() method! tetrominoes fall correctly, generate new one upon falling
 
-### 2025-05-29 - Fixed many bugs, added feature for more comfortable gameplay
+### 2025-05-29 - Fixed many bugs
 fixed the move() method to call the canMove() method so blocks don't pass through each other/the walls\
 fixed the line clearing method, it now works!\
+
+### 2025-05-29 - adding features for more comfortable gameplay
 made the blocks pause at the bottom if you don't drop them with space so that you can still move them around
