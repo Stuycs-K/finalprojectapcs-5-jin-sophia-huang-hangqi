@@ -30,3 +30,6 @@ Fixed some minor things. Waiting for canMove() to be fixed. Attempted fix, but t
 
 ### 2025-05-29 canMove() fixed
 canMove() fixed. Trying to figure out cancel()...???
+
+### 2025-05-29 canCancel() fixed
+Debugged canCancel(). Everything seems to work now, though for some reason the whole thing feels clinky. canRotate has to be written. How the game ends has to be written.
