@@ -33,3 +33,6 @@ canMove() fixed. Trying to figure out cancel()...???
 
 ### 2025-05-29 canCancel() fixed
 Debugged canCancel(). Everything seems to work now, though for some reason the whole thing feels clinky. canRotate has to be written. How the game ends has to be written.
+
+### 2025-05-30 still figuring out end; increase speed added
+End needs to be based on whether the fact that new blocks can be dropped or not. How exactly to do this is still unknown. Instead, I added an increasing speed function.
