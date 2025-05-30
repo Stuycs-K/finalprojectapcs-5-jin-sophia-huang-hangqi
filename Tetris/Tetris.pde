@@ -1,6 +1,7 @@
 private Board grid;
 private Tetromino currentBlock;
 private int blockCount;
+PFont Tetris;
 
 void setup() {
   size(800, 600);
@@ -9,6 +10,7 @@ void setup() {
   blockCount = 1;
   currentBlock.drawMino(true);
   grid.drawGrid();
+  Tetris = createFont("bruce-forever.regular.ttf", 50);
 }
 
 boolean canFall() {
@@ -53,6 +55,20 @@ void drop() {
   }
 }
 
+boolean isEnd() {
+  return (currentBlock.getPos()[0] <= -3) && (!canFall());
+}
+
+void endGame() {
+  fill(100);
+  rect(275, 250, 250, 100, 10);
+  textFont(Tetris);
+  fill(255);
+  textSize(29);
+  textAlign(CENTER, CENTER);
+  text("GAME OVER", 400, 300);
+}
+
 void keyPressed() {
   if (key == CODED) {
     if (keyCode == LEFT) {
@@ -85,24 +101,28 @@ void draw() {
   //check if any row can be cancelled
   //generate new block, set current to that block
   //drawgrid
-  int speed = 40;
-  if(blockCount > 20 && blockCount <= 40){
-    speed = 30;
-  }
-  if(blockCount > 40 && blockCount <= 60){
-    speed = 20;
-  }
-  if(blockCount > 60 && blockCount <= 80){
-    speed = 15;
-  }
-  if (frameCount % speed == 0) {
-    if (canFall()) {
-      fall();
-    } else {
-      cancel();
-      currentBlock = new Tetromino();
-      blockCount++;
+  if (isEnd()) {
+    endGame();
+  } else {
+    int speed = 40;
+    if (blockCount > 20 && blockCount <= 40) {
+      speed = 30;
     }
-    grid.drawGrid();
+    if (blockCount > 40 && blockCount <= 60) {
+      speed = 20;
+    }
+    if (blockCount > 60 && blockCount <= 80) {
+      speed = 15;
+    }
+    if (frameCount % speed == 0) {
+      if (canFall()) {
+        fall();
+      } else {
+        cancel();
+        currentBlock = new Tetromino();
+        blockCount++;
+      }
+      grid.drawGrid();
+    }
   }
 }
