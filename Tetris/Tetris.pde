@@ -2,6 +2,7 @@ private Board grid;
 private Tetromino currentBlock;
 private int blockCount;
 PFont Tetris;
+private boolean end;
 
 void setup() {
   size(800, 600);
@@ -11,6 +12,7 @@ void setup() {
   currentBlock.drawMino(true);
   grid.drawGrid();
   Tetris = createFont("bruce-forever.regular.ttf", 50);
+  end = false;
 }
 
 boolean canFall() {
@@ -56,7 +58,7 @@ void drop() {
 }
 
 boolean isEnd() {
-  return (currentBlock.getPos()[0] <= -3) && (!canFall());
+  return (grid.getColor(0, 4) != 0) || (grid.getColor(0, 5) != 0);
 }
 
 void endGame() {
@@ -101,9 +103,7 @@ void draw() {
   //check if any row can be cancelled
   //generate new block, set current to that block
   //drawgrid
-  if (isEnd()) {
-    endGame();
-  } else {
+  if (!end) {
     int speed = 40;
     if (blockCount > 20 && blockCount <= 40) {
       speed = 30;
@@ -121,8 +121,14 @@ void draw() {
         cancel();
         currentBlock = new Tetromino();
         blockCount++;
+        if (isEnd()) {
+          end = true;
+        }
       }
       grid.drawGrid();
     }
+  }
+  else{
+    endGame();
   }
 }
