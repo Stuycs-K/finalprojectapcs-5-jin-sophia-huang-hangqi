@@ -19,7 +19,7 @@ Nice to have features:
 - ghostly image of where the tetromino should fall (new!)
 - Tetris music!!! + settings to turn off music/sfx
 - a score that displays on the screen
-- block falling speeds up as you increase "levels" by clearing some number of lines
+- ✅block falling speeds up as you increase "levels" by clearing some number of lines
 - queue of the 3 tetrominoes that will come next
 - “hold” function — can keep track of one block but can only switch between the falling and “held” block once
 - high score, home page for restarting
@@ -57,7 +57,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - ✅ A method for generating blocks onto the grid (we named this drawMino()). The function maps the int[][] of the block onto the grid, ~~centerd at top~~ based on the position of the bottom left square, and it copies the colors in the block onto the grid.
 - ~~A method for making blocks fall. ~~Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.~~ Keep track of the 4*4 area that the falling block is in. If canFall(), then move everything down by one.~~
 - ~~A canFall() method to see if the block can fall.~~ (fall and canFall are redundant with the move method)
-- In draw generally draw periodically as the blocks move down, but we also have to change the screen when a line is cleared or when we rotate or move the blocks
+- ✅In draw generally draw periodically as the blocks move down, but we also have to change the screen when a line is cleared or when we rotate or move the blocks
 - ✅keyPressed methods for moving left, right, and dropping, as well as rotation
 
 
@@ -84,7 +84,7 @@ Ideas to break up the work: Hangqi will work on the graphics and Sophia will wor
     - be very careful to make sure rotations don't make blocks pass through one another; perhaps turn off the gravity to test various rotation situations
     - make sure that all types of blocks can be rotated properly
 5. End game by Mon 6/2
-     - ends game when blocks can no longer be drawn
+     - ✅ends game when blocks can no longer be drawn
 7. Other features (if possible)
    - priority order is probably approximately image, queue, score, hold, ✅increased speed, music, home screen
 
