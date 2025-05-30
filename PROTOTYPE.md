@@ -37,17 +37,17 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - ✅ void setup(): create the grid and draw it
      - ✅ void draw(): check if currentBlock can fall, if yes fall; otherwise, check if any rows can be cancelled, cancel them, then generate new block, set currentBlock
      - ~~void newBlock(): create a tetromino, copy and past the value of the colors onto the middle top of the grid, set currentBlock and currentBlockType~~ (redundant with new Tetromino(0 constructor)
-     - boolean canCancel(): check if row is colored in
-     - void cancel(): check if each row can cancel; if yes, clear that row, move everything else down
+     - ✅boolean canCancel(): check if row is colored in
+     - ✅void cancel(): check if each row can cancel; if yes, clear that row, move everything else down
 - A Box class that represents a single box in the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing Color[][], each slot holds the color of that box. The grid is then drawn through Processing.
-     - constructor takes in a color and position
-     - instance variables: color c, ~~Box[] neighbors~~, int[] position
-     - methods: boolean isNotEmpty() tells whether the Box actually has a tetris block in it
+     - ✅constructor takes in a color and position
+     - ✅instance variables: color c, ~~Box[] neighbors~~, int[] position
+     - ✅methods: boolean isNotEmpty() tells whether the Box actually has a tetris block in it
      - ~~Box getNeighbor(int dir) returns neighbors[dir]~~
      - ~~void setNeighbor(Box b, int index) sets neighbor[index] to b (new!)~~
-     - color getColor()
-     - void setColor(color c)
-     - void drawBox() draws the given Box (new!)
+     - ✅color getColor()
+     - ✅void setColor(color c)
+     - ✅void drawBox() draws the given Box (new!)
 - An ~~Block~~ Tetromino class that represents each type of block. The type of block is stored as a variable in the class, and is represented by a Box[]
      - ✅ constructor takes in no args; the shape is randomly chosen and the color is associated with the shape and the position starts at the top middle (might have to be customized for each shape)
      - ✅ instance variables: color c, String shape, ~~Box[] position~~ int[] position, int[][][] rotations (array of 2d arrays that each represent a possible rotation of the piece) (new!), int currentRotation (index in rotations) (new!)
@@ -58,7 +58,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 - ~~A method for making blocks fall. ~~Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.~~ Keep track of the 4*4 area that the falling block is in. If canFall(), then move everything down by one.~~
 - ~~A canFall() method to see if the block can fall.~~ (fall and canFall are redundant with the move method)
 - In draw generally draw periodically as the blocks move down, but we also have to change the screen when a line is cleared or when we rotate or move the blocks
-- keyPressed methods for moving left, right, and dropping, as well as rotation
+- ✅keyPressed methods for moving left, right, and dropping, as well as rotation
 
 
     
@@ -83,6 +83,8 @@ Ideas to break up the work: Hangqi will work on the graphics and Sophia will wor
     - make sure that T-spins are possible!
     - be very careful to make sure rotations don't make blocks pass through one another; perhaps turn off the gravity to test various rotation situations
     - make sure that all types of blocks can be rotated properly
-5. Other features (if possible)
+5. End game by Mon 6/2
+     - ends game when passes the top row. Score maybe?
+7. Other features (if possible)
    - priority order is probably approximately image, queue, score, hold, increased speed, music, home screen
 
