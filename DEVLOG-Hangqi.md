@@ -39,3 +39,4 @@ End needs to be based on whether the fact that new blocks can be dropped or not.
 
 ### 2025-05-30 end done
 End screen completed. Though isEnd() might still needs a small fixing. Sometimes even when there is still a row left, the game renders as end. But no big deal.
+isEnd() is fixed.
