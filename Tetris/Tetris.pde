@@ -30,7 +30,6 @@ void fall() {
   }
 }
 
-
 boolean canCancel(int row) {
   for (int j = 0; j < grid.getWidth(); j++) {
     if (grid.getColor(row, j) == 0) {
@@ -64,7 +63,6 @@ void drop() {
   }
 }
 
-
 boolean isEnd() {
   return (grid.getColor(0, 4) != 0) || (grid.getColor(0, 5) != 0);
 }
@@ -79,12 +77,12 @@ void endGame() {
   text("GAME OVER", 400, 300);
 }
 
-void keyPressed(){
-  if(key == CODED){
-    if(keyCode == LEFT){
+void keyPressed() {
+  if (key == CODED) {
+    if (keyCode == LEFT) {
       currentBlock.move(MOVE_LEFT);
     }
-    if(keyCode == RIGHT){
+    if (keyCode == RIGHT) {
       currentBlock.move(MOVE_RIGHT);
     }
     if (keyCode == UP) {
