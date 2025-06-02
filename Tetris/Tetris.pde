@@ -126,10 +126,17 @@ void draw() {
         fall();
       } else {
         cancel();
-        currentBlock = new Tetromino();
-        blockCount++;
         if (isEnd()) {
           end = true;
+        }
+        if (turnsUntilFall==0) {
+          turnsUntilFall=2;
+        } else if (turnsUntilFall>1) {
+          turnsUntilFall--;
+        } else if (turnsUntilFall==1) {
+          turnsUntilFall=0;
+          currentBlock = new Tetromino();
+          blockCount++;
         }
       }
       grid.drawGrid();
