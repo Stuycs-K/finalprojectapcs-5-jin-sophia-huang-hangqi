@@ -154,15 +154,36 @@
    }
    
    public boolean rotate(boolean cw) {
+     int newIndex;
      if (cw) {
-       drawMino(false);
-       currentRotation=(currentRotation+1)%rotations.length;
-       drawMino(true);
+       newIndex=(currentRotation+1)%rotations.length;
      } else {
-       drawMino(false);
-       currentRotation=(currentRotation-1+rotations.length)%rotations.length;
-       drawMino(true);
+       newIndex=(currentRotation-1+rotations.length)%rotations.length;
      }
+     int[][] config = rotations[newIndex];
+     for (int i=0; i<config.length; i++) {
+       for (int j=0; j<config[i].length; j++) {
+         if (config[i][j]==1) {
+           int row=i+position[0];
+           int col=j+position[1];
+           try {
+             if (grid.getBox(row, col).isNotEmpty()) {
+               try {
+                 if (rotations[currentRotation][i][j]==0) {
+                   return false;
+                 }
+               } catch (IndexOutOfBoundsException ex) {return false;}
+             }
+           } catch (IndexOutOfBoundsException ex) {
+             if (row>=grid.getHeight()) {return false;}
+             if (col<0 || col>=grid.getWidth()) {return false;}
+           }
+         }
+       }
+     }
+     drawMino(false);
+     currentRotation=newIndex;
+     drawMino(true);
      return true;
    }
    
