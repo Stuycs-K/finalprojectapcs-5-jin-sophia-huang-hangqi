@@ -83,30 +83,32 @@ void endGame() {
 }
 
 void keyPressed() {
-  if (key == CODED) {
-    if (keyCode == LEFT) {
-      currentBlock.move(MOVE_LEFT);
+  if (!end) {
+    if (key == CODED) {
+      if (keyCode == LEFT) {
+        currentBlock.move(MOVE_LEFT);
+      }
+      if (keyCode == RIGHT) {
+        currentBlock.move(MOVE_RIGHT);
+      }
+      if (keyCode == UP) {
+        currentBlock.rotate(true);
+      }
+      if (keyCode == DOWN) {
+        fall();
+      }
     }
-    if (keyCode == RIGHT) {
-      currentBlock.move(MOVE_RIGHT);
+    if (key == ' ') {
+      while (canFall()) {
+        fall();
+        turnsUntilFall=1;
+      }
     }
-    if (keyCode == UP) {
-      currentBlock.rotate(true);
+    if (key == 'z' || key == 'Z') {
+      currentBlock.rotate(false);
     }
-    if (keyCode == DOWN) {
-      fall();
-    }
+    grid.drawGrid();
   }
-  if (key == ' ') {
-    while (canFall()) {
-      fall();
-      turnsUntilFall=1;
-    }
-  }
-  if (key == 'z' || key == 'Z') {
-    currentBlock.rotate(false);
-  }
-  grid.drawGrid();
 }
 
 void draw() {
@@ -146,8 +148,7 @@ void draw() {
       }
       grid.drawGrid();
     }
-  }
-  else{
+  } else {
     endGame();
   }
 }
