@@ -221,4 +221,8 @@
        drawMino(true);
      }
    }
+   
+   public int[] getPos(){
+     return position;
+   }
  }
