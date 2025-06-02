@@ -29,3 +29,6 @@ made the blocks pause at the bottom if you don't drop them with space so that yo
 
 ### 2025-06-01 working on rotation
 adjusted arrays so that T, S, Z spins would stay in one place
+
+### 2025-06-02 more work on rotation method
+does not rotate if invalid; returns whether or not it can rotate
