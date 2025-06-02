@@ -26,3 +26,6 @@ fixed the line clearing method, it now works!\
 
 ### 2025-05-29 - adding features for more comfortable gameplay
 made the blocks pause at the bottom if you don't drop them with space so that you can still move them around
+
+### 2025-06-01 working on rotation
+adjusted arrays so that T, S, Z spins would stay in one place
