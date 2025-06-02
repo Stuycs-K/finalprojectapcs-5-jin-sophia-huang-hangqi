@@ -27,3 +27,16 @@ Added z key for rotation. wrote new block, not tested.
 
 ### 2025-05-28 - Stalled Progress
 Fixed some minor things. Waiting for canMove() to be fixed. Attempted fix, but things are so complicated that it feels like a junk pile.
+
+### 2025-05-29 canMove() fixed
+canMove() fixed. Trying to figure out cancel()...???
+
+### 2025-05-29 canCancel() fixed
+Debugged canCancel(). Everything seems to work now, though for some reason the whole thing feels clinky. canRotate has to be written. How the game ends has to be written.
+
+### 2025-05-30 still figuring out end; increase speed added
+End needs to be based on whether the fact that new blocks can be dropped or not. How exactly to do this is still unknown. Instead, I added an increasing speed function.
+
+### 2025-05-30 end done
+End screen completed. Though isEnd() might still needs a small fixing. Sometimes even when there is still a row left, the game renders as end. But no big deal.
+isEnd() is fixed.

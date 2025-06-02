@@ -51,17 +51,7 @@
      {{0, 0, 0, 0},
       {0, 1, 0, 0}, 
       {0, 1, 1, 0},
-      {0, 0, 1, 0}},
-    
-     {{0, 0, 0, 0},
-      {0, 1, 1, 0}, 
-      {1, 1, 0, 0},
-      {0, 0, 0, 0}},
-    
-     {{0, 1, 0, 0},
-      {0, 1, 1, 0}, 
-      {0, 0, 1, 0},
-      {0, 0, 0, 0}}};   
+      {0, 0, 1, 0}}};   
     }
     if (shape=='Z') {
        rotations = new int[][][]
@@ -73,17 +63,7 @@
      {{0, 0, 0, 0},
       {0, 0, 1, 0}, 
       {0, 1, 1, 0},
-      {0, 1, 0, 0}},
-    
-     {{0, 0, 0, 0},
-      {1, 1, 0, 0}, 
-      {0, 1, 1, 0},
-      {0, 0, 0, 0}},
-    
-     {{0, 0, 1, 0},
-      {0, 1, 1, 0}, 
-      {0, 1, 0, 0},
-      {0, 0, 0, 0}}};   
+      {0, 1, 0, 0}}};   
     }
     if (shape=='L') {
        rotations = new int[][][]
@@ -136,20 +116,20 @@
       {1, 1, 1, 0},
       {0, 0, 0, 0}},
     
-     {{0, 1, 0, 0},
-      {0, 1, 1, 0}, 
-      {0, 1, 0, 0},
-      {0, 0, 0, 0}},
-    
      {{0, 0, 0, 0},
-      {0, 1, 1, 1}, 
-      {0, 0, 1, 0},
-      {0, 0, 0, 0}},
-    
-     {{0, 0, 0, 0},
-      {0, 0, 1, 0}, 
+      {0, 1, 0, 0}, 
       {0, 1, 1, 0},
-      {0, 0, 1, 0}}};   
+      {0, 1, 0, 0}},
+    
+     {{0, 0, 0, 0},
+      {0, 0, 0, 0}, 
+      {1, 1, 1, 0},
+      {0, 1, 0, 0}},
+    
+     {{0, 0, 0, 0},
+      {0, 1, 0, 0}, 
+      {1, 1, 0, 0},
+      {0, 1, 0, 0}}};   
     }
    }
    
@@ -186,12 +166,7 @@
    
    //w is up, a is left, s is down, d is right
    //but also we're not supposed to be moving up lol
-   public boolean canMove(char direction) {
-     int dir=0;
-     if (direction=='d') {dir=0;}
-     if (direction=='w') {dir=1;}
-     if (direction=='a') {dir=2;}
-     if (direction=='s') {dir=3;}
+   public boolean canMove(int dir) {
      int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
      int[][] config = rotations[currentRotation];
      for (int i=0; i<config.length; i++) {
@@ -217,18 +192,17 @@
      return true;
    }
    
-   public void move(char direction) {
-     if (canMove(direction)) {
-       int dir=0;
-       if (direction=='d') {dir=0;}
-       if (direction=='w') {dir=1;}
-       if (direction=='a') {dir=2;}
-       if (direction=='s') {dir=3;}
+   public void move(int dir) {
+     if (canMove(dir)) {
        int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
        drawMino(false);
        position[0]+=moves[dir][0];
        position[1]+=moves[dir][1];
        drawMino(true);
      }
+   }
+   
+   public int[] getPos(){
+     return position;
    }
  }
