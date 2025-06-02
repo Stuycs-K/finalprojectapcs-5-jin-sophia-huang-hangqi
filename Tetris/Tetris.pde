@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 private Board grid;
 private Tetromino currentBlock;
 private int turnsUntilFall=0;
@@ -8,6 +10,7 @@ public static final int MOVE_DOWN=3;
 private int blockCount;
 PFont Tetris;
 private boolean end;
+private SoundFile file;
 
 void setup() {
   size(800, 600);
@@ -18,6 +21,8 @@ void setup() {
   grid.drawGrid();
   Tetris = createFont("bruce-forever.regular.ttf", 50);
   end = false;
+  file = new SoundFile(this, "Tetris.mp3");
+  file.play();
 }
 
 boolean canFall() {
