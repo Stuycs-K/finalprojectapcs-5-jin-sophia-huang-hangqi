@@ -9,6 +9,7 @@ private int blockCount;
 PFont Tetris;
 private boolean end;
 
+
 void setup() {
   size(800, 600);
   grid = new Board();
@@ -110,12 +111,6 @@ void draw() {
   //check if any row can be cancelled
   //generate new block, set current to that block
   //drawgrid
-  if (frameCount % 30 == 0) {
-    if(canFall()){
-      fall();
-    } else {
-      //cancel();
-      currentBlock = new Tetromino();
   if (!end) {
     int speed = 40;
     if (blockCount > 20 && blockCount <= 40) {

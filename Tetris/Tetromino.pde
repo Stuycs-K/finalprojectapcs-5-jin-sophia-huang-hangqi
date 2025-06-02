@@ -4,14 +4,16 @@
   private int[][][] rotations;
   private int currentRotation;
   private int[] position; //position of top left corner
+  public String type;
   
   public Tetromino() {
     int[] colors={#e39f02, #0f9bd7, #59b101, #d70f37, #e35b02, #2141c6, #af298a};
     char[] shapes = {'O', 'I', 'S', 'Z', 'L', 'J', 'T'};
-    int type = (int)(7*Math.random());
-    c=colors[type];
-    shape=shapes[type];
+    int shapeIndex = (int)(7*Math.random());
+    c=colors[shapeIndex];
+    shape=shapes[shapeIndex];
     currentRotation=0;
+    type="Tetromino";
     position = new int[]{-2, 3};
     if (shape=='O') {
       rotations = new int[][][]
@@ -204,5 +206,9 @@
    
    public int[] getPos(){
      return position;
+   }
+   
+   public void setColor(color col) {
+     c=col;
    }
  }
