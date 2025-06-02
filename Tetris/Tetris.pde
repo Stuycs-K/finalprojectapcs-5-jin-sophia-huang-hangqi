@@ -70,7 +70,7 @@ void drop() {
 }
 
 boolean isEnd() {
-  return (grid.getColor(0, 4) != 0) || (grid.getColor(0, 5) != 0);
+  return (!grid.getBox(0, 4).isNotEmpty()) || (!grid.getBox(0, 5).isNotEmpty());
 }
 
 void endGame() {

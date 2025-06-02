@@ -11,7 +11,7 @@ public class Box {
   }
   
   boolean isNotEmpty() {
-    return (associatedT!=null);
+    return (associatedT!=null || associatedT.getType().equals("Ghost"));
   }
   
   color getColor() {

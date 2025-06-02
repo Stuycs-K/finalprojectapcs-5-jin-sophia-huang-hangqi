@@ -232,4 +232,8 @@
    public void setColor(color col) {
      c=col;
    }
+   
+   public String getType() {
+     return type;
+   }
  }
