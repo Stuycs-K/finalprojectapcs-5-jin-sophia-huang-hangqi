@@ -2,15 +2,16 @@ public class Box {
   private color c;
   private int[] position;
   private int size;
-  
+  private Tetromino associatedT;
   public Box(color boxColor, int[] pos, int s) {
     c=boxColor;
     position=pos;
     size=s;
+    associatedT=null;
   }
   
   boolean isNotEmpty() {
-    return (c!=0);
+    return (associatedT!=null);
   }
   
   color getColor() {
