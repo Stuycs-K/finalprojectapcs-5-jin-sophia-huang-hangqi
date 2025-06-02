@@ -22,7 +22,7 @@ void setup() {
   Tetris = createFont("bruce-forever.regular.ttf", 50);
   end = false;
   file = new SoundFile(this, "Tetris.mp3");
-  file.play();
+  file.loop();
 }
 
 boolean canFall() {
