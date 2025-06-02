@@ -86,5 +86,5 @@ Ideas to break up the work: Hangqi will work on the graphics and Sophia will wor
 5. End game by Mon 6/2
      - ✅ends game when blocks can no longer be drawn
 7. Other features (if possible)
-   - priority order is probably approximately image, queue, score, hold, ✅increased speed, music, home screen
+   - priority order is probably approximately image, queue, score, hold, ✅increased speed, ✅music, home screen
 
