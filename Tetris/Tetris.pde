@@ -17,16 +17,16 @@ BlockQueue queue;
 void setup() {
   size(800, 600);
   grid = new Board();
-  background = loadImage("wp2675347.jpg");
+  background = loadImage("Data/wp2675347.jpg");
   background(background);
   queue = new BlockQueue();
   currentBlock = queue.next();
   blockCount = 1;
   currentBlock.drawMino(true);
   grid.drawGrid();
-  Tetris = createFont("bruce-forever.regular.ttf", 50);
+  Tetris = createFont("Data/bruce-forever.regular.ttf", 50);
   end = false;
-  file = new SoundFile(this, "Tetris.mp3");
+  file = new SoundFile(this, "Data/Tetris.mp3");
   file.loop();
 }
 
@@ -46,7 +46,6 @@ boolean canCancel(int row) {
       return false;
     }
   }
-  println("true "+row);
   return true;
 }
 
