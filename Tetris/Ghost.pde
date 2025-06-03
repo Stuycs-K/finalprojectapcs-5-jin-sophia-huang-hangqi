@@ -1,6 +1,8 @@
 public class Ghost extends Tetromino {
-  public Ghost() {
+  private Tetromino parent;
+  public Ghost(Tetromino p) {
     setColor(100);
     type="Ghost";
+    parent=p;
   }
 }
