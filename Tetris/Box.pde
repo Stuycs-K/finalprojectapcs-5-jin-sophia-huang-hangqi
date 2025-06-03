@@ -26,7 +26,14 @@ public class Box {
   }
   
   void drawBox() {
-    stroke(50);
+    if(getColor() == 0){
+      strokeWeight(1);
+      stroke(50);
+    }
+    else{
+      strokeWeight(2);
+      stroke(50);
+    }
     fill(getColor());
     square(position[0], position[1], size);
   }
