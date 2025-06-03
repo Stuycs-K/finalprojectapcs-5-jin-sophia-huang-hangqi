@@ -11,18 +11,23 @@ private int blockCount;
 PFont Tetris;
 private boolean end;
 private SoundFile file;
+PImage background;
+BlockQueue queue;
 
 
 void setup() {
   size(800, 600);
   grid = new Board();
-  currentBlock = new Tetromino();
+  background = loadImage("Data/wp2675347.jpg");
+  background(background);
+  queue = new BlockQueue();
+  currentBlock = queue.next();
   blockCount = 1;
   currentBlock.drawMino(true);
   grid.drawGrid();
-  Tetris = createFont("bruce-forever.regular.ttf", 50);
+  Tetris = createFont("Data/bruce-forever.regular.ttf", 50);
   end = false;
-  file = new SoundFile(this, "Tetris.mp3");
+  file = new SoundFile(this, "Data/Tetris.mp3");
   file.loop();
 }
 
@@ -42,7 +47,6 @@ boolean canCancel(int row) {
       return false;
     }
   }
-  println("true "+row);
   return true;
 }
 
@@ -84,30 +88,32 @@ void endGame() {
 }
 
 void keyPressed() {
-  if (key == CODED) {
-    if (keyCode == LEFT) {
-      currentBlock.move(MOVE_LEFT);
+  if (!end) {
+    if (key == CODED) {
+      if (keyCode == LEFT) {
+        currentBlock.move(MOVE_LEFT);
+      }
+      if (keyCode == RIGHT) {
+        currentBlock.move(MOVE_RIGHT);
+      }
+      if (keyCode == UP) {
+        currentBlock.rotate(true);
+      }
+      if (keyCode == DOWN) {
+        fall();
+      }
     }
-    if (keyCode == RIGHT) {
-      currentBlock.move(MOVE_RIGHT);
+    if (key == ' ') {
+      while (canFall()) {
+        fall();
+        turnsUntilFall=1;
+      }
     }
-    if (keyCode == UP) {
-      currentBlock.rotate(true);
+    if (key == 'z' || key == 'Z') {
+      currentBlock.rotate(false);
     }
-    if (keyCode == DOWN) {
-      fall();
-    }
+    grid.drawGrid();
   }
-  if (key == ' ') {
-    while (canFall()) {
-      fall();
-      turnsUntilFall=1;
-    }
-  }
-  if (key == 'z' || key == 'Z') {
-    currentBlock.rotate(false);
-  }
-  grid.drawGrid();
 }
 
 void draw() {
@@ -147,8 +153,7 @@ void draw() {
       }
       grid.drawGrid();
     }
-  }
-  else{
+  } else {
     endGame();
   }
 }
