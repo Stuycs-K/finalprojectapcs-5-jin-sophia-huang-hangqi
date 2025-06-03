@@ -10,8 +10,12 @@ public class Box {
     associatedT=null;
   }
   
+  void setTetromino(Tetromino t) {
+     associatedT=t;
+  }
+  
   boolean isNotEmpty() {
-    return (associatedT!=null || associatedT.getType().equals("Ghost"));
+    return (associatedT!=null && associatedT.getType().equals("Tetromino"));
   }
   
   color getColor() {

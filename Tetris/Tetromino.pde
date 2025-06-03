@@ -177,8 +177,10 @@
            try {
              Box b = grid.getBox(position[0]+i, position[1]+j);
              if (newBlock) {
+               b.setTetromino(this);
                b.setColor(c);
              } else {
+               b.setTetromino(null);
                b.setColor(0);
              }
            } catch (IndexOutOfBoundsException ex) {}
