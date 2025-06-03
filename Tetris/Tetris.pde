@@ -11,10 +11,12 @@ private int blockCount;
 PFont Tetris;
 private boolean end;
 private SoundFile file;
+PImage background;
 
 void setup() {
   size(800, 600);
   grid = new Board();
+  background = loadImage(
   currentBlock = new Tetromino();
   blockCount = 1;
   currentBlock.drawMino(true);
