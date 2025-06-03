@@ -16,7 +16,7 @@ BlockQueue queue;
 
 void setup() {
   size(800, 600);
-  grid = new Board();
+  grid = new Board(10, 20, width / 2 - (25 * 10 / 2), height / 2 - (25 * 20 / 2));
   background = loadImage("Data/wp2675347.jpg");
   background(background);
   queue = new BlockQueue();
