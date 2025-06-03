@@ -12,12 +12,15 @@ PFont Tetris;
 private boolean end;
 private SoundFile file;
 PImage background;
+BlockQueue queue;
 
 void setup() {
   size(800, 600);
   grid = new Board();
-  background = loadImage(
-  currentBlock = new Tetromino();
+  background = loadImage("wp2675347.jpg");
+  background(background);
+  queue = new BlockQueue();
+  currentBlock = queue.next();
   blockCount = 1;
   currentBlock.drawMino(true);
   grid.drawGrid();
