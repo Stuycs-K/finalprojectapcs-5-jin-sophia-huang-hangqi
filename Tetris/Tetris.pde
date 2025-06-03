@@ -41,6 +41,7 @@ boolean canCancel(int row) {
       return false;
     }
   }
+  println("true "+row);
   return true;
 }
 
