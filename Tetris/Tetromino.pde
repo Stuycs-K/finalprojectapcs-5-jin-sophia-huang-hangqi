@@ -72,7 +72,7 @@ public class Tetromino {
           {0, 0, 0, 1},
           {0, 1, 1, 1},
         {0, 0, 0, 0}},
-        
+
         {{0, 0, 0, 0},
           {0, 1, 0, 0},
           {0, 1, 0, 0},
@@ -87,18 +87,14 @@ public class Tetromino {
           {0, 0, 1, 0},
           {0, 0, 1, 0},
         {0, 0, 0, 0}}};
-      }
+    }
     if (shape=='J') {
       rotations = new int[][][]
         {{{0, 0, 0, 0},
           {1, 0, 0, 0},
           {1, 1, 1, 0},
         {0, 0, 0, 0}},
-      
-    {{0, 0, 0, 0},
-          {0, 0, 1, 0},
-          {0, 0, 1, 0},
-        {0, 1, 1, 0}},
+
 
         {{0, 1, 1, 0},
           {0, 1, 0, 0},
@@ -108,7 +104,12 @@ public class Tetromino {
         {{0, 0, 0, 0},
           {0, 1, 1, 1},
           {0, 0, 0, 1},
-        {0, 0, 0, 0}}};
+        {0, 0, 0, 0}},
+
+        {{0, 0, 0, 0},
+          {0, 0, 1, 0},
+          {0, 0, 1, 0},
+        {0, 1, 1, 0}}};
     }
     if (shape=='T') {
       rotations = new int[][][]
@@ -268,7 +269,7 @@ public class Tetromino {
   public int[] getPos() {
     return position;
   }
-  public void setPos(int[] pos){
+  public void setPos(int[] pos) {
     position = pos;
   }
 }

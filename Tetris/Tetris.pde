@@ -74,7 +74,7 @@ void drop() {
 }
 
 boolean isEnd() {
-  return (grid.getColor(0, 4) != 0) || (grid.getColor(0, 5) != 0);
+  return currentBlock.getPos()[0] < 0;
 }
 
 void endGame() {
@@ -85,6 +85,9 @@ void endGame() {
   textSize(29);
   textAlign(CENTER, CENTER);
   text("GAME OVER", 400, 300);
+  textAlign(CENTER);
+  textSize(20);
+  text("Blocks: " + blockCount, 400, 340);
 }
 
 void keyPressed() {
