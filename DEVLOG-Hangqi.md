@@ -43,3 +43,6 @@ isEnd() is fixed.
 
 ### 2025-06-02 added music, working on queue
 Added music during class, but not seem to be working now. Added BlockQueue class, but didn't save, so have to start from scratch. Sigh.
+
+### 2025-06-03 basic layout of queue
+Got the grid and box for the queue, but need to figure out how to draw the tetrominoes on there. Might need to modify the tetromino constructor.
