@@ -21,6 +21,7 @@ void setup() {
   background(background);
   queue = new BlockQueue();
   currentBlock = queue.next();
+  currentBlock.setPos(new int[] {-2, 3});
   blockCount = 1;
   currentBlock.drawMino(true);
   grid.drawGrid();
@@ -147,6 +148,7 @@ void draw() {
         } else if (turnsUntilFall==1) {
           turnsUntilFall=0;
           currentBlock = new Tetromino();
+          currentBlock.setPos(new int[] {-2, 3});
           blockCount++;
         }
       }
