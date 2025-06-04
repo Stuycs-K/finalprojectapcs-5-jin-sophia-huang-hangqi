@@ -231,6 +231,10 @@
      return position;
    }
    
+   public void setPos(int[] pos) {
+     position=pos;
+   }
+   
    public void setColor(color col) {
      c=col;
    }

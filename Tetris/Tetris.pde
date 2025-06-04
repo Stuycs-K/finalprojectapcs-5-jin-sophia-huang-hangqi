@@ -2,6 +2,7 @@ import processing.sound.*;
 
 private Board grid;
 private Tetromino currentBlock;
+private Tetromino currentGhost;
 private int turnsUntilFall=0;
 public static final int MOVE_RIGHT=0;
 public static final int MOVE_UP=1;
@@ -22,8 +23,10 @@ void setup() {
   background(background);
   queue = new BlockQueue();
   currentBlock = queue.next();
+  currentGhost = new Ghost(currentBlock);
   blockCount = 1;
   currentBlock.drawMino(true);
+  currentGhost.drawMino(true);
   grid.drawGrid();
   Tetris = createFont("Data/bruce-forever.regular.ttf", 50);
   end = false;
@@ -134,10 +137,10 @@ void draw() {
     }
     if (blockCount > 60 && blockCount <= 80) {
       speed = 15;
-    }
+    } //<>//
     if (frameCount % speed == 0) {
       if (canFall()) {
-        fall(); //<>//
+        fall();
       } else {
         cancel();
         if (isEnd()) {
