@@ -19,6 +19,7 @@ public class Board {
       }
     }
   }
+  
   public color getColor(int i, int j){
     return board[i][j].getColor();
   }

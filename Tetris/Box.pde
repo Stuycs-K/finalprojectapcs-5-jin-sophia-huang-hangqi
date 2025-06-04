@@ -14,6 +14,10 @@ public class Box {
      associatedT=t;
   }
   
+  Tetromino getTetromino() {
+    return associatedT;
+  }
+  
   boolean isNotEmpty() {
     return (associatedT!=null && associatedT.getType().equals("Tetromino"));
   }

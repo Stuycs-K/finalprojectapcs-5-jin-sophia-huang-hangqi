@@ -55,11 +55,13 @@ void cancel() {
     if (canCancel(i)) {
       for (int j = 0; j < grid.getWidth(); j++) {
         grid.setColor(i, j, color(0));
+        grid.getBox(i, j).setTetromino(null);
       }
       for (int rowsAbove = i - 1; rowsAbove >= 0; rowsAbove--) {
         for (int j = 0; j < grid.getWidth(); j++) {
           color temp = grid.getColor(rowsAbove, j);
           grid.setColor(rowsAbove + 1, j, temp);
+          grid.getBox(rowsAbove+1, j).setTetromino(grid.getBox(rowsAbove, j).getTetromino());
         }
       }
       i++;
@@ -74,7 +76,7 @@ void drop() {
 }
 
 boolean isEnd() {
-  return (!grid.getBox(0, 4).isNotEmpty()) || (!grid.getBox(0, 5).isNotEmpty());
+  return (grid.getBox(0, 4).isNotEmpty()) || (grid.getBox(0, 5).isNotEmpty()); //<>//
 }
 
 void endGame() {
@@ -135,7 +137,7 @@ void draw() {
     }
     if (frameCount % speed == 0) {
       if (canFall()) {
-        fall();
+        fall(); //<>//
       } else {
         cancel();
         if (isEnd()) {
