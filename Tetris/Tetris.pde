@@ -97,12 +97,18 @@ void keyPressed() {
     if (key == CODED) {
       if (keyCode == LEFT) {
         currentBlock.move(MOVE_LEFT);
+        currentGhost.drawMino(false);
+        currentGhost.drawMino(true);
       }
       if (keyCode == RIGHT) {
         currentBlock.move(MOVE_RIGHT);
+        currentGhost.drawMino(false);
+        currentGhost.drawMino(true);
       }
       if (keyCode == UP) {
         currentBlock.rotate(true);
+        currentGhost.drawMino(false);
+        currentGhost.drawMino(true);
       }
       if (keyCode == DOWN) {
         fall();
@@ -116,6 +122,8 @@ void keyPressed() {
     }
     if (key == 'z' || key == 'Z') {
       currentBlock.rotate(false);
+      currentGhost.drawMino(false);
+      currentGhost.drawMino(true);
     }
     grid.drawGrid();
   }
@@ -129,7 +137,7 @@ void draw() {
   //drawgrid
   if (!end) {
     int speed = 40;
-    if (blockCount > 20 && blockCount <= 40) {
+    if (blockCount > 20 && blockCount <= 40) { //<>//
       speed = 30;
     }
     if (blockCount > 40 && blockCount <= 60) {
@@ -137,7 +145,7 @@ void draw() {
     }
     if (blockCount > 60 && blockCount <= 80) {
       speed = 15;
-    } //<>//
+    }
     if (frameCount % speed == 0) {
       if (canFall()) {
         fall();

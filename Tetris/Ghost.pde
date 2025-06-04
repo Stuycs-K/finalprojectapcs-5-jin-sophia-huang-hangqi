@@ -7,9 +7,12 @@ public class Ghost extends Tetromino {
   }
   
   public void drawMino(boolean newBlock) {
-     while (canMove(MOVE_DOWN)) {
+    if (newBlock) {
+      setPos(parent.getPos());
+      while (canMove(MOVE_DOWN)) {
        move(MOVE_DOWN);
-     }
+       }
+    }
      int[][] config = parent.rotations[parent.currentRotation];
      for (int i=0; i<config.length; i++) {
        for (int j=0; j<config[i].length; j++) {
