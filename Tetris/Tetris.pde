@@ -40,9 +40,12 @@ boolean canFall() {
 }
 
 void fall() {
+  int rowDropped = 0;
   if (canFall()) {
     currentBlock.move(MOVE_DOWN);
+    rowDropped++;
   }
+  score += 2 * rowDropped;
 }
 
 boolean canCancel(int row) {
@@ -161,6 +164,7 @@ void draw() {
     if (frameCount % speed == 0) {
       if (canFall()) {
         fall();
+        score++;
       } else {
         cancel();
         if (isEnd()) {
