@@ -46,3 +46,6 @@ Added music during class, but not seem to be working now. Added BlockQueue class
 
 ### 2025-06-03 basic layout of queue
 Got the grid and box for the queue, but need to figure out how to draw the tetrominoes on there. Might need to modify the tetromino constructor.
+
+### 2025-06-03 got BlockQueue working
+The next three blocks can now be displayed.
