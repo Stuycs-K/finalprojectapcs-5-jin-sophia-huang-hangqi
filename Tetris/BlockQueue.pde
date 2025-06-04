@@ -18,13 +18,15 @@ public class BlockQueue {
   public Tetromino next() {
     Tetromino temp = nextInLine.remove(0);
     nextInLine.add(new Tetromino(new int[] {6, 1}));
+    nextInLine.get(0).setPos(new int[] {0, 1});
+    nextInLine.get(1).setPos(new int[] {3, 1});
     return temp;
   }
 
   public void draw() {
-    noStroke();
+    noStroke(); //<>//
     fill(0);
-    rect(550, 50, 170, 300, 10); //<>// //<>//
+    rect(550, 50, 170, 300, 10); //<>//
     textFont(font);
     textAlign(CENTER, CENTER);
     fill(255);
