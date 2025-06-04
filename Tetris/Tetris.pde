@@ -7,12 +7,14 @@ public static final int MOVE_RIGHT=0;
 public static final int MOVE_UP=1;
 public static final int MOVE_LEFT=2;
 public static final int MOVE_DOWN=3;
-private int blockCount;
 PFont Tetris;
 private boolean end;
 private SoundFile file;
 PImage background;
 BlockQueue queue;
+private int level;
+private int score;
+private int totalLinesCleared;
 
 void setup() {
   size(800, 600);
@@ -22,13 +24,15 @@ void setup() {
   queue = new BlockQueue();
   currentBlock = queue.next();
   currentBlock.setPos(new int[] {-2, 3});
-  blockCount = 1;
   currentBlock.drawMino(true);
   grid.drawGrid();
   Tetris = createFont("Data/bruce-forever.regular.ttf", 50);
   end = false;
   file = new SoundFile(this, "Data/Tetris.mp3");
   file.loop();
+  level = 1;
+  score = 0;
+  totalLinesCleared = 0;
 }
 
 boolean canFall() {
@@ -51,8 +55,10 @@ boolean canCancel(int row) {
 }
 
 void cancel() {
+  int rowCancelled = 0;
   for (int i = grid.getHeight() - 1; i >= 0; i--) {
     if (canCancel(i)) {
+      rowCancelled++;
       for (int j = 0; j < grid.getWidth(); j++) {
         grid.setColor(i, j, color(0));
       }
@@ -64,6 +70,19 @@ void cancel() {
       }
       i++;
     }
+  }
+  totalLinesCleared += rowCancelled;
+  if(rowCancelled == 1){
+    score += 100 * level;
+  }
+  if(rowCancelled == 2){
+    score += 300 * level;
+  }
+  if(rowCancelled == 3){
+    score += 500 * level;
+  }
+  if(rowCancelled >= 4){
+    score += 800 * level;
   }
 }
 
@@ -87,7 +106,7 @@ void endGame() {
   text("GAME OVER", 400, 300);
   textAlign(CENTER);
   textSize(20);
-  text("Blocks: " + blockCount, 400, 340);
+  text("Score: " + score, 400, 340);
 }
 
 void keyPressed() {
@@ -127,14 +146,17 @@ void draw() {
   //drawgrid
   if (!end) {
     int speed = 40;
-    if (blockCount > 20 && blockCount <= 40) {
+    if (totalLinesCleared >= 10) {
       speed = 30;
+      level = 2;
     }
-    if (blockCount > 40 && blockCount <= 60) {
+    if (totalLinesCleared >= 20) {
       speed = 20;
+      level = 3;
     }
-    if (blockCount > 60 && blockCount <= 80) {
+    if (totalLinesCleared >= 30) {
       speed = 15;
+      level = 4;
     }
     if (frameCount % speed == 0) {
       if (canFall()) {
@@ -152,7 +174,6 @@ void draw() {
           turnsUntilFall=0;
           currentBlock = queue.next();
           currentBlock.setPos(new int[] {-2, 3});
-          blockCount++;
         }
       }
       grid.drawGrid();
