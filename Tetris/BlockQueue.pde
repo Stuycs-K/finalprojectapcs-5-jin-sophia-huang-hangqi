@@ -7,26 +7,14 @@ public class BlockQueue {
 
   public BlockQueue() {
     nextInLine = new ArrayList<Tetromino>();
-    nextInLine.add(new Tetromino(new int[] {0, 1}));
-    nextInLine.add(new Tetromino(new int[] {3, 1}));
-    nextInLine.add(new Tetromino(new int[] {6, 1}));
+    nextInLine.add(new Tetromino(new int[] {0, 1})); //<>//
+    nextInLine.add(new Tetromino(new int[] {3, 1})); //<>//
+    nextInLine.add(new Tetromino(new int[] {6, 1})); //<>//
     font = createFont("Data/bruce-forever.regular.ttf", 50);
     smallBoard = new Board(6, 10, 560, 90);
-    draw();
-  }
-
-  public Tetromino next() {
-    Tetromino temp = nextInLine.remove(0);
-    nextInLine.add(new Tetromino(new int[] {6, 1}));
-    nextInLine.get(0).setPos(new int[] {0, 1});
-    nextInLine.get(1).setPos(new int[] {3, 1});
-    return temp;
-  }
-
-  public void draw() {
-    noStroke(); //<>//
+    noStroke();
     fill(0);
-    rect(550, 50, 170, 300, 10); //<>//
+    rect(550, 50, 170, 300, 10);
     textFont(font);
     textAlign(CENTER, CENTER);
     fill(255);
@@ -35,6 +23,23 @@ public class BlockQueue {
     stroke(255);
     strokeWeight(2);
     rect(560, 90, 150, 250);
+  }
+
+  public Tetromino next() {
+    Tetromino temp = nextInLine.remove(0);
+    nextInLine.get(0).setPos(new int[] {0, 1});
+    nextInLine.get(1).setPos(new int[] {3, 1});
+    nextInLine.add(new Tetromino(new int[] {6, 1}));
+    draw();
+    return temp;
+  }
+
+  public void draw() {
+    for(int i = 0; i < smallBoard.getHeight(); i++){
+      for(int j = 0; j < smallBoard.getWidth(); j++){
+        smallBoard.setColor(i, j, 0);
+      }
+    } //<>// //<>//
     for (Tetromino current : nextInLine) {
       current.drawMino(true, smallBoard);
     }

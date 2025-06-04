@@ -147,7 +147,7 @@ void draw() {
           turnsUntilFall--;
         } else if (turnsUntilFall==1) {
           turnsUntilFall=0;
-          currentBlock = new Tetromino();
+          currentBlock = queue.next();
           currentBlock.setPos(new int[] {-2, 3});
           blockCount++;
         }
