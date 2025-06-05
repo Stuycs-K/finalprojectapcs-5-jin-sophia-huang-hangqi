@@ -49,3 +49,6 @@ Got the grid and box for the queue, but need to figure out how to draw the tetro
 
 ### 2025-06-03 got BlockQueue working
 The next three blocks can now be displayed. Score calculation done and speed calculation redo.
+
+### 2025-06-05 got scoreBox working; beautified queue
+The scoreBox now shows the score, level, and number of lines cleared. The queue now looks a bit better.
