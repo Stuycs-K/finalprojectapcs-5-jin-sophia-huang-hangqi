@@ -30,11 +30,11 @@ public class BlockQueue {
     nextInLine.get(0).setPos(new int[] {0, 1});
     nextInLine.get(1).setPos(new int[] {3, 1});
     nextInLine.add(new Tetromino(new int[] {6, 1}));
-    draw();
+    drawBox();
     return temp;
   }
 
-  public void draw() {
+  public void drawBox() {
     for(int i = 0; i < smallBoard.getHeight(); i++){
       for(int j = 0; j < smallBoard.getWidth(); j++){
         smallBoard.setColor(i, j, 0);

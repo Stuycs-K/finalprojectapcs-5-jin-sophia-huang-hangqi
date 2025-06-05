@@ -12,9 +12,7 @@ private boolean end;
 private SoundFile file;
 PImage background;
 BlockQueue queue;
-private int level;
-private int score;
-private int totalLinesCleared;
+ScoreBox score;
 
 void setup() {
   size(800, 600);
@@ -30,9 +28,7 @@ void setup() {
   end = false;
   file = new SoundFile(this, "Data/Tetris.mp3");
   file.loop();
-  level = 1;
-  score = 0;
-  totalLinesCleared = 0;
+  score = new ScoreBox();
 }
 
 boolean canFall() {
@@ -45,7 +41,7 @@ void fall() {
     currentBlock.move(MOVE_DOWN);
     rowDropped++;
   }
-  score += 2 * rowDropped;
+  score.addScore(2 * rowDropped);
 }
 
 boolean canCancel(int row) {
@@ -74,18 +70,18 @@ void cancel() {
       i++;
     }
   }
-  totalLinesCleared += rowCancelled;
-  if(rowCancelled == 1){
-    score += 100 * level;
+  score.addRows(rowCancelled);
+  if (rowCancelled == 1) {
+    score.addScore(100 * score.getLevel());
   }
-  if(rowCancelled == 2){
-    score += 300 * level;
+  if (rowCancelled == 2) {
+    score.addScore(300 * score.getLevel());
   }
-  if(rowCancelled == 3){
-    score += 500 * level;
+  if (rowCancelled == 3) {
+    score.addScore(500 * score.getLevel());
   }
-  if(rowCancelled >= 4){
-    score += 800 * level;
+  if (rowCancelled >= 4) {
+    score.addScore(800 * score.getLevel());
   }
 }
 
@@ -109,7 +105,7 @@ void endGame() {
   text("GAME OVER", 400, 300);
   textAlign(CENTER);
   textSize(20);
-  text("Score: " + score, 400, 340);
+  text("Score: " + score.getScore(), 400, 340);
 }
 
 void keyPressed() {
@@ -148,23 +144,11 @@ void draw() {
   //generate new block, set current to that block
   //drawgrid
   if (!end) {
-    int speed = 40;
-    if (totalLinesCleared >= 10) {
-      speed = 30;
-      level = 2;
-    }
-    if (totalLinesCleared >= 20) {
-      speed = 20;
-      level = 3;
-    }
-    if (totalLinesCleared >= 30) {
-      speed = 15;
-      level = 4;
-    }
+    int speed = score.increLevel();
     if (frameCount % speed == 0) {
       if (canFall()) {
         fall();
-        score++;
+        score.addScore(1);
       } else {
         cancel();
         if (isEnd()) {
@@ -179,6 +163,7 @@ void draw() {
           currentBlock = queue.next();
           currentBlock.setPos(new int[] {-2, 3});
         }
+        score.drawNext();
       }
       grid.drawGrid();
     }
