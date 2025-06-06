@@ -1,7 +1,7 @@
 import processing.sound.*;
 
 private Board grid;
-private Tetromino currentBlock;
+Tetromino currentBlock;
 private Tetromino currentGhost;
 private int turnsUntilFall=0;
 public static final int MOVE_RIGHT=0;

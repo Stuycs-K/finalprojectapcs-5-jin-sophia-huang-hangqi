@@ -6,12 +6,19 @@ public class Ghost extends Tetromino {
     parent=p;
   }
   
+  public void move(int dir) {
+     if (canMove(dir)) {
+       int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
+       setPos(new int[]{moves[dir][0], moves[dir][1]});
+     }
+   }
+  
   public void drawMino(boolean newBlock) {
     if (newBlock) {
       setPos(parent.getPos());
       while (canMove(MOVE_DOWN)) {
        move(MOVE_DOWN);
-       }
+      }
     }
      int[][] config = parent.rotations[parent.currentRotation];
      for (int i=0; i<config.length; i++) {
@@ -21,7 +28,7 @@ public class Ghost extends Tetromino {
              Box b = grid.getBox(getPos()[0]+i, getPos()[1]+j);
              if (newBlock) {
                b.setTetromino(this);
-               b.setColor(100);
+               b.setColor(50);
              } else {
                b.setTetromino(null);
                b.setColor(0);

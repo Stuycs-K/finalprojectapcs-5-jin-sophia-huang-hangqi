@@ -19,7 +19,7 @@ public class Box {
   }
   
   boolean isNotEmpty() {
-    return (associatedT!=null && associatedT.getType().equals("Tetromino"));
+    return (associatedT!=null && associatedT.getType().equals("Tetromino") && associatedT!=currentBlock);
   }
   
   color getColor() {
