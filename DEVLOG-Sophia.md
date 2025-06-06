@@ -38,4 +38,5 @@ trying to implement the "ghost" image of the block of where it's supposed to be 
 somehow the game won't load anymore and I'm trying to figure that out
 
 ### 2025-06-06 slowly debugging ghost
-got rid of the infinite loop; made new constructor for Tetromino so rotations hopefully work properly
+got rid of the infinite loop; made new constructor for Tetromino so rotations hopefully work properly\
+managed to fix rotations, but now there are inconsistencies with line clearing (and probably with the criteria for a box being empty)
