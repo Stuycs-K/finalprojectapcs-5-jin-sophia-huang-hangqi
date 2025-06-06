@@ -52,3 +52,6 @@ The next three blocks can now be displayed. Score calculation done and speed cal
 
 ### 2025-06-05 got scoreBox working; beautified queue
 The scoreBox now shows the score, level, and number of lines cleared. The queue now looks a bit better.
+
+### 2025-06-06 added restart key
+Press r to restart; only active when game is over.
