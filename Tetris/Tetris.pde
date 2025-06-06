@@ -46,7 +46,7 @@ void fall() {
 
 boolean canCancel(int row) {
   for (int j = 0; j < grid.getWidth(); j++) {
-    if (grid.getColor(row, j) == 0) {
+    if (!grid.getBox(row, j).isNotEmpty()) {
       return false;
     }
   }
@@ -171,6 +171,8 @@ void draw() {
           currentBlock.drawMino(true);
           currentBlock = new Tetromino();
           currentGhost = new Ghost(currentBlock);
+          currentBlock.drawMino(true);
+          currentGhost.drawMino(true);
           blockCount++;
         }
       }
