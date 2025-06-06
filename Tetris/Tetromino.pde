@@ -193,12 +193,12 @@
    //but also we're not supposed to be moving up lol
    public boolean canMove(int dir) {
      int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
-     int[][] config = rotations[currentRotation];
+     int[][] config = getRotation();
      for (int i=0; i<config.length; i++) {
        for (int j=0; j<config[i].length; j++) {
          if (config[i][j]==1) {
-           int row=i+position[0]+moves[dir][0];
-           int col=j+position[1]+moves[dir][1];
+           int row=i+getPos()[0]+moves[dir][0];
+           int col=j+getPos()[1]+moves[dir][1];
            try {
              if (grid.getBox(row, col).isNotEmpty()) {
                try {
@@ -225,6 +225,10 @@
        position[1]+=moves[dir][1];
        drawMino(true);
      }
+   }
+   
+   public int[][] getRotation() {
+     return rotations[currentRotation];
    }
    
    public int[] getPos(){
