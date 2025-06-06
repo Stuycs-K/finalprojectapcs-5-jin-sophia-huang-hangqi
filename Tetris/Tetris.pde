@@ -2,7 +2,7 @@ import processing.sound.*;
 
 private Board grid;
 Tetromino currentBlock;
-private Tetromino currentGhost;
+private Ghost currentGhost;
 private int turnsUntilFall=0;
 public static final int MOVE_RIGHT=0;
 public static final int MOVE_UP=1;
@@ -95,22 +95,23 @@ void endGame() {
 void keyPressed() {
   if (!end) {
     if (key == CODED) {
-      if (keyCode == LEFT) {
+      if (keyCode == LEFT && currentBlock.canMove(MOVE_LEFT)) {
         currentBlock.move(MOVE_LEFT);
         currentGhost.drawMino(false);
         currentGhost.drawMino(true);
       }
-      if (keyCode == RIGHT) {
+      if (keyCode == RIGHT && currentBlock.canMove(MOVE_RIGHT)) {
         currentBlock.move(MOVE_RIGHT);
         currentGhost.drawMino(false);
         currentGhost.drawMino(true);
       }
       if (keyCode == UP) {
-        currentBlock.rotate(true);
         currentGhost.drawMino(false);
+        currentBlock.rotate(true);
+        currentGhost.rotate(true);
         currentGhost.drawMino(true);
       }
-      if (keyCode == DOWN) {
+      if (keyCode == DOWN && currentBlock.canMove(MOVE_DOWN)) {
         fall();
       }
     }
@@ -121,8 +122,9 @@ void keyPressed() {
       }
     }
     if (key == 'z' || key == 'Z') {
-      currentBlock.rotate(false);
       currentGhost.drawMino(false);
+      currentBlock.rotate(false);
+      currentGhost.rotate(false);
       currentGhost.drawMino(true);
     }
     grid.drawGrid();

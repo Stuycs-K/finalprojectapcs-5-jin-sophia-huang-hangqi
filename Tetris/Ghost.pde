@@ -8,20 +8,15 @@ public class Ghost extends Tetromino {
   }
   
   public void move(int dir) {
-     if (canMove(dir)) {
-       int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
-       setPos(new int[]{getPos()[0]+moves[dir][0], getPos()[1]+moves[dir][1]});
-     }
+     int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
+     setPos(new int[]{getPos()[0]+moves[dir][0], getPos()[1]+moves[dir][1]});
    }
   
   public void drawMino(boolean newBlock) {
     if (newBlock) {
-      System.out.println(Arrays.toString(getPos()));
       setPos(parent.getPos());
-      System.out.println(Arrays.toString(getPos()));
       while (canMove(MOVE_DOWN)) {
        move(MOVE_DOWN);
-       System.out.println(Arrays.toString(getPos()));
       }
     }
      int[][] config = parent.rotations[parent.currentRotation];
