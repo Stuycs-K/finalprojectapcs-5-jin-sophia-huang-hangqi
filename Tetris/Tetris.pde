@@ -108,8 +108,9 @@ void keyPressed() {
       if (keyCode == UP) {
         currentGhost.drawMino(false);
         currentBlock.drawMino(false);
-        currentBlock.rotate(true);
-        currentGhost.rotate(true);
+        if (currentBlock.rotate(true)) {
+          currentGhost.rotate(true);
+        }
         currentGhost.drawMino(true);
         currentBlock.drawMino(true);
       }
@@ -126,8 +127,9 @@ void keyPressed() {
     if (key == 'z' || key == 'Z') {
       currentGhost.drawMino(false);
       currentBlock.drawMino(false);
-      currentBlock.rotate(false);
-      System.out.println(currentGhost.rotate(false));
+      if (currentBlock.rotate(false)) {
+         System.out.println(currentGhost.rotate(false));
+      }
       currentGhost.drawMino(true);
       currentBlock.drawMino(true);
     }
