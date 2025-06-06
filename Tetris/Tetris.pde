@@ -135,6 +135,11 @@ void keyPressed() {
     }
     grid.drawGrid();
   }
+  if(key == 'r' || key == 'R'){
+    if(end){
+      setup();
+    }
+  }
 }
 
 void draw() {
