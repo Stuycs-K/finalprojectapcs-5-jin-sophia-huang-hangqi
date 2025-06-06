@@ -33,3 +33,6 @@ adjusted arrays so that T, S, Z spins would stay in one place
 ### 2025-06-02 more work on rotation method and ghost
 does not rotate if invalid; returns whether or not it can rotate\
 trying to implement the "ghost" image of the block of where it's supposed to be when it falls
+
+### 2025-06-05 more work on ghost
+somehow the game won't load anymore and I'm trying to figure that out
