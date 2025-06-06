@@ -25,7 +25,6 @@ public class Ghost extends Tetromino {
    }
   
   public void drawMino(boolean newBlock) {
-    System.out.println(Arrays.deepToString(getRotation()));
     if (newBlock) {
       setPos(parent.getPos());
       while (canMove(MOVE_DOWN)) {
@@ -39,11 +38,12 @@ public class Ghost extends Tetromino {
            try {
              Box b = grid.getBox(getPos()[0]+i, getPos()[1]+j);
              if (newBlock) {
-               b.setTetromino(this);
-               b.setColor(100);
+               if (getPos()[0]!=parent.getPos()[0] || getPos()[1]!=parent.getPos()[1]) {
+                 b.setTetromino(this);
+                 b.setColor(100);
+               }
              } else {
-               b.setTetromino(null);
-               b.setColor(0);
+               b.empty();
              }
            } catch (IndexOutOfBoundsException ex) {}
          }

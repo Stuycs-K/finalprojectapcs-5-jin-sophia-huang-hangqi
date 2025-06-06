@@ -57,8 +57,7 @@ void cancel() {
   for (int i = grid.getHeight() - 1; i >= 0; i--) {
     if (canCancel(i)) {
       for (int j = 0; j < grid.getWidth(); j++) {
-        grid.setColor(i, j, color(0));
-        grid.getBox(i, j).setTetromino(null);
+        grid.getBox(i, j).empty();
       }
       for (int rowsAbove = i - 1; rowsAbove >= 0; rowsAbove--) {
         for (int j = 0; j < grid.getWidth(); j++) {
@@ -99,11 +98,13 @@ void keyPressed() {
         currentBlock.move(MOVE_LEFT);
         currentGhost.drawMino(false);
         currentGhost.drawMino(true);
+        currentBlock.drawMino(true);
       }
       if (keyCode == RIGHT && currentBlock.canMove(MOVE_RIGHT)) {
         currentBlock.move(MOVE_RIGHT);
         currentGhost.drawMino(false);
         currentGhost.drawMino(true);
+        currentBlock.drawMino(true);
       }
       if (keyCode == UP) {
         currentGhost.drawMino(false);
@@ -128,7 +129,7 @@ void keyPressed() {
       currentGhost.drawMino(false);
       currentBlock.drawMino(false);
       if (currentBlock.rotate(false)) {
-         System.out.println(currentGhost.rotate(false));
+         currentGhost.rotate(false);
       }
       currentGhost.drawMino(true);
       currentBlock.drawMino(true);

@@ -26,6 +26,11 @@ public class Box {
     return c;
   }
   
+  void empty() {
+    setColor(0);
+    setTetromino(null);
+  }
+  
   void setColor(color col) {
     c=col;
   }
