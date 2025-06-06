@@ -359,6 +359,18 @@
      return rotations[currentRotation];
    }
    
+   public int rotationIndex() {
+     return currentRotation;
+   }
+   
+   public void setRotationIndex(int i) {
+     currentRotation=i;
+   }
+   
+   public int[][][] getRotations() {
+     return rotations;
+   }
+   
    public int[] getPos(){
      return position;
    }

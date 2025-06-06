@@ -127,7 +127,7 @@ void keyPressed() {
       currentGhost.drawMino(false);
       currentBlock.drawMino(false);
       currentBlock.rotate(false);
-      currentGhost.rotate(false);
+      System.out.println(currentGhost.rotate(false));
       currentGhost.drawMino(true);
       currentBlock.drawMino(true);
     }

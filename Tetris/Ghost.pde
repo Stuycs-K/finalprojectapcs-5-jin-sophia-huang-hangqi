@@ -12,6 +12,17 @@ public class Ghost extends Tetromino {
      int[][] moves = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
      setPos(new int[]{getPos()[0]+moves[dir][0], getPos()[1]+moves[dir][1]});
    }
+   
+   public boolean rotate(boolean cw) {
+     int newIndex;
+     if (cw) {
+       newIndex=(rotationIndex()+1)%getRotations().length;
+     } else {
+       newIndex=(rotationIndex()-1+getRotations().length)%getRotations().length;
+     }
+     setRotationIndex(newIndex);
+     return true;
+   }
   
   public void drawMino(boolean newBlock) {
     System.out.println(Arrays.deepToString(getRotation()));
