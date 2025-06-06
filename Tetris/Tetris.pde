@@ -79,7 +79,7 @@ void drop() {
 }
 
 boolean isEnd() {
-  return (grid.getBox(0, 4).isNotEmpty()) || (grid.getBox(0, 5).isNotEmpty()); //<>//
+  return (grid.getBox(0, 4).isNotEmpty()) || (grid.getBox(0, 5).isNotEmpty()); //<>// //<>// //<>//
 }
 
 void endGame() {
@@ -139,7 +139,7 @@ void draw() {
   //drawgrid
   if (!end) {
     int speed = 40;
-    if (blockCount > 20 && blockCount <= 40) { //<>//
+    if (blockCount > 20 && blockCount <= 40) { //<>// //<>// //<>//
       speed = 30;
     }
     if (blockCount > 40 && blockCount <= 60) {

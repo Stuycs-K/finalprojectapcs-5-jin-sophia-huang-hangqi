@@ -2,6 +2,7 @@ import java.util.Arrays.*;
 public class Ghost extends Tetromino {
   private Tetromino parent;
   public Ghost(Tetromino p) {
+    super(p.shape);
     setColor(100);
     type="Ghost";
     parent=p;
@@ -13,6 +14,7 @@ public class Ghost extends Tetromino {
    }
   
   public void drawMino(boolean newBlock) {
+    System.out.println(Arrays.deepToString(getRotation()));
     if (newBlock) {
       setPos(parent.getPos());
       while (canMove(MOVE_DOWN)) {
