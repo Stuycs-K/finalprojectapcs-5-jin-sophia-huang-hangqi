@@ -36,3 +36,6 @@ trying to implement the "ghost" image of the block of where it's supposed to be 
 
 ### 2025-06-05 more work on ghost
 somehow the game won't load anymore and I'm trying to figure that out
+
+### 2025-06-06 slowly debugging ghost
+got rid of the infinite loop; made new constructor for Tetromino so rotations hopefully work properly
