@@ -295,9 +295,7 @@
          }
        }
      }
-     drawMino(false);
      currentRotation=newIndex;
-     drawMino(true);
      return true;
    }
    

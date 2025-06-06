@@ -79,7 +79,7 @@ void drop() {
 }
 
 boolean isEnd() {
-  return (grid.getBox(0, 4).isNotEmpty()) || (grid.getBox(0, 5).isNotEmpty()); //<>// //<>// //<>//
+  return (grid.getBox(0, 4).isNotEmpty()) || (grid.getBox(0, 5).isNotEmpty()); //<>//
 }
 
 void endGame() {
@@ -107,9 +107,11 @@ void keyPressed() {
       }
       if (keyCode == UP) {
         currentGhost.drawMino(false);
+        currentBlock.drawMino(false);
         currentBlock.rotate(true);
         currentGhost.rotate(true);
         currentGhost.drawMino(true);
+        currentBlock.drawMino(true);
       }
       if (keyCode == DOWN && currentBlock.canMove(MOVE_DOWN)) {
         fall();
@@ -123,9 +125,11 @@ void keyPressed() {
     }
     if (key == 'z' || key == 'Z') {
       currentGhost.drawMino(false);
+      currentBlock.drawMino(false);
       currentBlock.rotate(false);
       currentGhost.rotate(false);
       currentGhost.drawMino(true);
+      currentBlock.drawMino(true);
     }
     grid.drawGrid();
   }
@@ -139,7 +143,7 @@ void draw() {
   //drawgrid
   if (!end) {
     int speed = 40;
-    if (blockCount > 20 && blockCount <= 40) { //<>// //<>// //<>//
+    if (blockCount > 20 && blockCount <= 40) { //<>//
       speed = 30;
     }
     if (blockCount > 40 && blockCount <= 60) {
@@ -162,7 +166,9 @@ void draw() {
           turnsUntilFall--;
         } else if (turnsUntilFall==1) {
           turnsUntilFall=0;
+          currentBlock.drawMino(true);
           currentBlock = new Tetromino();
+          currentGhost = new Ghost(currentBlock);
           blockCount++;
         }
       }
