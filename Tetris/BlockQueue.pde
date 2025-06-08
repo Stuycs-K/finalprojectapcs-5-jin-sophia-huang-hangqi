@@ -1,15 +1,20 @@
-import java.util.*;
+import java.util.*; //<>// //<>// //<>// //<>//
 
 public class BlockQueue {
   private ArrayList<Tetromino> nextInLine;
+  private BlockGeneration permutation;
   PFont font;
   Board smallBoard;
 
   public BlockQueue() {
     nextInLine = new ArrayList<Tetromino>();
-    nextInLine.add(new Tetromino(new int[] {0, 1})); //<>// //<>//
-    nextInLine.add(new Tetromino(new int[] {3, 1})); //<>// //<>//
-    nextInLine.add(new Tetromino(new int[] {6, 1})); //<>// //<>//
+    permutation = new BlockGeneration();
+    for (int i = 0; i < 3; i++) {
+      nextInLine.add(permutation.next());
+    }
+    nextInLine.get(0).setPos(new int[] {0, 1});
+    nextInLine.get(1).setPos(new int[] {3, 1});
+    nextInLine.get(2).setPos(new int[] {6, 1});
     font = createFont("Data/bruce-forever.regular.ttf", 50);
     smallBoard = new Board(6, 10, 560, 90);
     drawBox();
@@ -19,7 +24,8 @@ public class BlockQueue {
     Tetromino temp = nextInLine.remove(0);
     nextInLine.get(0).setPos(new int[] {0, 1});
     nextInLine.get(1).setPos(new int[] {3, 1});
-    nextInLine.add(new Tetromino(new int[] {6, 1}));
+    nextInLine.add(permutation.next());
+    nextInLine.get(2).setPos(new int[] {6, 1});
     drawNext();
     return temp;
   }
@@ -39,7 +45,7 @@ public class BlockQueue {
   }
   public void drawNext() {
     for (int i = 0; i < smallBoard.getHeight(); i++) {
-      for (int j = 0; j < smallBoard.getWidth(); j++) { //<>//
+      for (int j = 0; j < smallBoard.getWidth(); j++) {
         smallBoard.setColor(i, j, 0);
       }
     }

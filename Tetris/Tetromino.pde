@@ -13,6 +13,22 @@ public class Tetromino {
     shape=shapes[type];
     currentRotation=0;
     position = new int[]{-2, 3};
+    setRotation(shape);
+  }
+  public Tetromino(int[] pos) {
+    this();
+    position = pos;
+  }
+  public Tetromino(int type) {
+    this();
+    int[] colors={#e39f02, #0f9bd7, #59b101, #d70f37, #e35b02, #2141c6, #af298a};
+    char[] shapes = {'O', 'I', 'S', 'Z', 'L', 'J', 'T'};
+    c=colors[type];
+    shape=shapes[type];
+    setRotation(shape);
+  }
+  
+  public void setRotation(char shape){
     if (shape=='O') {
       rotations = new int[][][]
         {{{0, 0, 0, 0},
@@ -134,11 +150,6 @@ public class Tetromino {
         {0, 1, 0, 0}}};
     }
   }
-  public Tetromino(int[] pos) {
-    this();
-    position = pos;
-  }
-
   public boolean rotate(boolean cw) {
     int newIndex;
     if (cw) {
