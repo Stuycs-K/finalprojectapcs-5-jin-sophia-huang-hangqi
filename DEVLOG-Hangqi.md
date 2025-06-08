@@ -55,3 +55,6 @@ The scoreBox now shows the score, level, and number of lines cleared. The queue 
 
 ### 2025-06-06 added restart key
 Press r to restart; only active when game is over.
+
+### 2025-06-08 optimized tetromino generation
+Instead of random, now the generation of Tetrominoes is based on a permutation of the seven tetrominoes.
