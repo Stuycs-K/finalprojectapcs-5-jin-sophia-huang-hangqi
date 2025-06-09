@@ -41,5 +41,6 @@ somehow the game won't load anymore and I'm trying to figure that out
 got rid of the infinite loop; made new constructor for Tetromino so rotations hopefully work properly\
 managed to fix rotations, but now there are inconsistencies with line clearing (and probably with the criteria for a box being empty)
 
-### 2025-06-08 finished debugging ghost!
-fixed the issue with line clearing and new tetromino generation
+### 2025-06-08 finished debugging ghost! + hold method
+fixed the issue with line clearing and new tetromino generation\
+made method to "hold" blocks; blocks can only switch into the hold mode once per turn, also made visuals for this
