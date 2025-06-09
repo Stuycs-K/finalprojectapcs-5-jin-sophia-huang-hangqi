@@ -168,12 +168,12 @@ void draw() {
           currentBlock.drawMino(true);
           currentBlock = new Tetromino();
           currentGhost = new Ghost(currentBlock);
-          currentBlock.drawMino(true);
-          currentGhost.drawMino(true);
         cancel();
         if (isEnd()) {
           end = true;
         }
+          currentBlock.drawMino(true);
+          currentGhost.drawMino(true);
           blockCount++;
         }
       }
