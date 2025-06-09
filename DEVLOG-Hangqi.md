@@ -57,6 +57,6 @@ The scoreBox now shows the score, level, and number of lines cleared. The queue 
 Press r to restart; only active when game is over.
 
 ### 2025-06-08 optimized tetromino generation
-Instead of random, now the generation of Tetrominoes is based on a permutation of the seven tetrominoes.\
+Instead of random, now the generation of Tetrominoes is based on a permutation of the seven tetrominoes.
 
 I believe this document accurately reflects the contributions of my teammate. - Sophia
