@@ -32,21 +32,39 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 ![Alt text](umldiagram.png?raw=true "Title" ) 
 - A Tetris class containing the following methods and instance variables:
      - ✅ private Board grid: a 20*10 grid
-     - ✅ private ~~int[] currentBlock: format of {i, j, h, w}, where i and j are the coordinate for the top left box, while h and w are how high and wide the box is.~~ instead do Tetromino() currentBlock;
+     - ✅ ~~private~~ ~~int[] currentBlock: format of {i, j, h, w}, where i and j are the coordinate for the top left box, while h and w are how high and wide the box is.~~ instead do Tetromino currentBlock;
+     - ✅ Tetromino heldBlock (new!)
+     - ✅ boolean held (new!) tells if a block has been held that turn
+     - ✅ Ghost currentGhost (new!)
+     - ✅ boolean end (new!) tells if the game is supposed to end
+     - ✅ SoundFile file (new!) is tetris music
+     - ✅ PImage background (new!) is background image
+     - ✅ PFont Tetris (new!)
+     - ✅ BlockQueue queue (new!)
+     - ✅ ScoreBox score (new!)
      - ~~private char currentBlockType: the type of block currentBlock is; for rotation~~ (info already in Tetromino class)
      - ✅ void setup(): create the grid and draw it
      - ✅ void draw(): check if currentBlock can fall, if yes fall; otherwise, check if any rows can be cancelled, cancel them, then generate new block, set currentBlock
+     - ✅ void drawHold() draws the hold box (new!)
+     - ✅ boolean canFall() returns whether or not the block can fall; just calls Tetromino.canMove()
+     - ✅ void fall() moves the tetromino down
+     - ✅ void drop() makes the Tetromino fall until it can't anymore (new!)
      - ~~void newBlock(): create a tetromino, copy and past the value of the colors onto the middle top of the grid, set currentBlock and currentBlockType~~ (redundant with new Tetromino(0 constructor)
-     - ✅boolean canCancel(): check if row is colored in
-     - ✅void cancel(): check if each row can cancel; if yes, clear that row, move everything else down
+     - ✅ boolean canCancel(): check if row is colored in
+     - ✅ void cancel(): check if each row can cancel; if yes, clear that row, move everything else down
+     - ✅ boolean isEnd() checks the game should end (new!)
+     - ✅ void endGame() ends the game (new!)
 - A Box class that represents a single box in the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing Color[][], each slot holds the color of that box. The grid is then drawn through Processing.
-     - ✅constructor takes in a color and position
-     - ✅instance variables: color c, ~~Box[] neighbors~~, int[] position
+     - ✅constructor takes in a color and position and size (new!)
+     - ✅instance variables: color c, ~~Box[] neighbors~~, int[] position, Tetromino associatedT (new!), int size (new!)
      - ✅methods: boolean isNotEmpty() tells whether the Box actually has a tetris block in it
      - ~~Box getNeighbor(int dir) returns neighbors[dir]~~
      - ~~void setNeighbor(Box b, int index) sets neighbor[index] to b (new!)~~
+     - ✅void setTetromino(Tetromino t) sets associatedT to t
      - ✅color getColor()
      - ✅void setColor(color c)
+     - ✅void empty() sets color to 0 and associatedT to null (new!)
+     - ✅int[] getPosition() returns position of Box
      - ✅void drawBox() draws the given Box (new!)
 - An ~~Block~~ Tetromino class that represents each type of block. The type of block is stored as a variable in the class, and is represented by a Box[]
      - ✅ constructor takes in no args; ~~the shape is randomly chosen~~ and the color is associated with the shape and the position starts at the top middle (might have to be customized for each shape)
@@ -70,6 +88,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - ✅ String getType() returns type ("Tetromino" or "Ghost") (new!)
 - a Ghost class that extends the Tetromino class (all new!)
      - instance variables: ✅ Tetromino parent (the Tetromino the Ghost is following)
+     - constructor: ✅ new Ghost(Tetromino p) sets the Tetromino the Ghost follows
      - methods (all overrides of Tetromino functions):
           - ✅ void move(int dir)
           - ✅ drawMino(boolean newBlock)
@@ -77,7 +96,7 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 - ~~A method for making blocks fall. ~~Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.~~ Keep track of the 4*4 area that the falling block is in. If canFall(), then move everything down by one.~~
 - ~~A canFall() method to see if the block can fall.~~ (fall and canFall are redundant with the move method)
 - ✅In draw generally draw periodically as the blocks move down, but we also have to change the screen when a line is cleared or when we rotate or move the blocks
-- ✅keyPressed methods for moving left, right, and dropping, as well as rotation
+- ✅keyPressed methods for moving left, right, and dropping, as well as rotation both directions, and to restart the game (new!)
 
 
     
