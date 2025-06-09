@@ -49,12 +49,25 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - ✅void setColor(color c)
      - ✅void drawBox() draws the given Box (new!)
 - An ~~Block~~ Tetromino class that represents each type of block. The type of block is stored as a variable in the class, and is represented by a Box[]
-     - ✅ constructor takes in no args; the shape is randomly chosen and the color is associated with the shape and the position starts at the top middle (might have to be customized for each shape)
-     - ✅ instance variables: color c, String shape, ~~Box[] position~~ int[] position, int[][][] rotations (array of 2d arrays that each represent a possible rotation of the piece) (new!), int currentRotation (index in rotations) (new!)
+     - ✅ constructor takes in no args; ~~the shape is randomly chosen~~ and the color is associated with the shape and the position starts at the top middle (might have to be customized for each shape)
+     - ✅ constructor with an arg for the shape
+     - ✅ constructor with an arg for the position
+     - ✅ instance variables: color c, ~~String~~ char shape, ~~Box[] position~~ int[] position, int[][][] rotations (array of 2d arrays that each represent a possible rotation of the piece) (new!), int currentRotation (index in rotations) (new!), String type (either "Ghost" or "Tetromino") (new!)
      - ✅ methods: boolean canMove(int dir) where dir aligns with the index in the neighbors array of the Box
+     - ✅ void setRotation(char shape) called in the constructor sets rotation arrays based on shape (new!)
      - ✅ void move(int dir) moves it in the given direction (it should call canMove())
      - ✅ boolean rotate(boolean clockwise) either rotates it CW or CCW by editing the position array and will return false if you can't rotate
-     - ✅ A method for generating blocks onto the grid (we named this drawMino()). The function maps the int[][] of the block onto the grid, ~~centerd at top~~ based on the position of the bottom left square, and it copies the colors in the block onto the grid.
+     - ✅ A method for generating blocks onto the grid (we named this drawMino(boolean newBlock)). The function maps the int[][] of the block onto the grid, ~~centerd at top~~ based on the position of the bottom left square, and it copies the colors in the block onto the grid. Will draw the block of newBlock is true and will erase it if newBlock is false (new!)
+            - drawMino(boolean newBlock, Board board) draws the block on a specific grid
+     - ✅ int[][] getRotation() returns current array representing the block (new!)
+     - ✅ int rotationIndex() returns current index in array of rotation arrays (new!)
+     - ✅ void setRotationIndex(int i) sets current rotation index to the given int (new!)
+     - ✅ int[] getPos() returns position (new!)
+     - ✅ void setPos(int[] pos) sets position to given 2 element array (new!)
+     - ✅ char getShape() returns shape type of block (new!)
+     - ✅ void setColor(color col) sets color to given color (new!)
+     - ✅ color getColor() returns color (new!)
+     - ✅ String getType() returns type ("Tetromino" or "Ghost") (new!)
 - ~~A method for making blocks fall. ~~Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.~~ Keep track of the 4*4 area that the falling block is in. If canFall(), then move everything down by one.~~
 - ~~A canFall() method to see if the block can fall.~~ (fall and canFall are redundant with the move method)
 - ✅In draw generally draw periodically as the blocks move down, but we also have to change the screen when a line is cleared or when we rotate or move the blocks
