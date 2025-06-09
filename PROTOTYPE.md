@@ -93,6 +93,37 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
           - ✅ void move(int dir)
           - ✅ drawMino(boolean newBlock)
           - ✅ boolean rotate(boolean clockwise)
+- a Board class for the entirety of the board
+     - instance variables: ✅ Box[][] board, ✅ int size
+     - constructor: ✅ Board(int width, int height, int initX, int initY)
+     - methods:
+          - ✅ void drawGrid() draws the board
+          - ✅ color getColor(int i, int j) returns color at given indices
+          - ✅ void setColor(int i, int j, color newColor) sets given color at given indices
+          - ✅ int getHeight() returns height
+          - ✅ int getWidth() returns width
+          - ✅ Box getBox(int i, int j) returns Box at given indices
+          - ✅ void setBox(int i, int j, Box b) sets given Box at given indices
+-  a BlockQueue class for the queued blocks (new!)
+     - instance variables: ✅ ArrayList<Tetromino> nextInLine, ✅ BlockGeneration permutation, ✅ PFont font, ✅ Board smallBoard
+     - constructor: ✅ BlockQueue() makes queue of 3 blocks
+     - methods: ✅ Tetromino next() return next in queue and moves other items up
+     - ✅ void drawBox() draws the queue as it appears on the screen
+     - ✅ void drawNext() draws the next item in the queue
+- a BlockGeneration class that helps randomize the order of the Tetromino queue (new!)
+     - instance variable: ✅ ArrayList<Tetromino> permutation
+     - constructor: ✅ BlockGeneration() randomizes the permutation
+     - methods: ✅ ArrayList<Tetromino> randomize() returns list of 7 tetrominoes in randomized order
+     - ✅ Tetromino next() returns the next Tetromino in the list, will call randomize() again if it's empty
+- ScoreBox class for keeping the score
+     - instance variables: ✅ int score, ✅ int level, ✅ int totalRowsCleared, ✅ PFont font
+     - constructor: ✅ ScoreBox() initializes score box
+     - methods:
+          - ✅ void addScore(int scored) adds given int to score
+          - ✅ void addRows(int rowed) adds given int to totalRowsCleared
+          - ✅ int increLevel() increases level, returns speed of new level
+          - ✅ void drawBox() draws the ScoreBox as it appears on the screen
+          - ✅ void drawNext() updates the ScoreBox
 - ~~A method for making blocks fall. ~~Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.~~ Keep track of the 4*4 area that the falling block is in. If canFall(), then move everything down by one.~~
 - ~~A canFall() method to see if the block can fall.~~ (fall and canFall are redundant with the move method)
 - ✅In draw generally draw periodically as the blocks move down, but we also have to change the screen when a line is cleared or when we rotate or move the blocks
@@ -124,5 +155,5 @@ Ideas to break up the work: Hangqi will work on the graphics and Sophia will wor
 5. End game by Mon 6/2
      - ✅ends game when blocks can no longer be drawn
 7. Other features (if possible)
-   - priority order is probably approximately image, ✅queue, ✅score, ✅hold, ✅increased speed, ✅music, home screen
+   - priority order is probably approximately ✅image, ✅queue, ✅score, ✅hold, ✅increased speed, ✅music, home screen
 
