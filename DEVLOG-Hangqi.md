@@ -43,3 +43,18 @@ isEnd() is fixed.
 
 ### 2025-06-02 added music, working on queue
 Added music during class, but not seem to be working now. Added BlockQueue class, but didn't save, so have to start from scratch. Sigh.
+
+### 2025-06-03 basic layout of queue
+Got the grid and box for the queue, but need to figure out how to draw the tetrominoes on there. Might need to modify the tetromino constructor.
+
+### 2025-06-03 got BlockQueue working
+The next three blocks can now be displayed. Score calculation done and speed calculation redo.
+
+### 2025-06-05 got scoreBox working; beautified queue
+The scoreBox now shows the score, level, and number of lines cleared. The queue now looks a bit better.
+
+### 2025-06-06 added restart key
+Press r to restart; only active when game is over.
+
+### 2025-06-08 optimized tetromino generation
+Instead of random, now the generation of Tetrominoes is based on a permutation of the seven tetrominoes.

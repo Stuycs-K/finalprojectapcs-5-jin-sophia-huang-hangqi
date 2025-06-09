@@ -8,23 +8,23 @@ public static final int MOVE_RIGHT=0;
 public static final int MOVE_UP=1;
 public static final int MOVE_LEFT=2;
 public static final int MOVE_DOWN=3;
-private int blockCount;
 PFont Tetris;
 private boolean end;
 private SoundFile file;
 PImage background;
 BlockQueue queue;
+ScoreBox score;
 
 
 void setup() {
   size(800, 600);
-  grid = new Board();
+  grid = new Board(10, 20, width / 2 - (25 * 10 / 2), height / 2 - (25 * 20 / 2));
   background = loadImage("Data/wp2675347.jpg");
   background(background);
   queue = new BlockQueue();
   currentBlock = queue.next();
   currentGhost = new Ghost(currentBlock);
-  blockCount = 1;
+  currentBlock.setPos(new int[] {-2, 3});
   currentBlock.drawMino(true);
   currentGhost.drawMino(true);
   grid.drawGrid();
@@ -32,6 +32,7 @@ void setup() {
   end = false;
   file = new SoundFile(this, "Data/Tetris.mp3");
   file.loop();
+  score = new ScoreBox();
 }
 
 boolean canFall() {
@@ -39,9 +40,12 @@ boolean canFall() {
 }
 
 void fall() {
+  int rowDropped = 0;
   if (canFall()) {
     currentBlock.move(MOVE_DOWN);
+    rowDropped++;
   }
+  score.addScore(2 * rowDropped);
 }
 
 boolean canCancel(int row) {
@@ -54,8 +58,10 @@ boolean canCancel(int row) {
 }
 
 void cancel() {
+  int rowCancelled = 0;
   for (int i = grid.getHeight() - 1; i >= 0; i--) {
     if (canCancel(i)) {
+      rowCancelled++;
       for (int j = 0; j < grid.getWidth(); j++) {
         grid.getBox(i, j).empty();
       }
@@ -69,6 +75,19 @@ void cancel() {
       i++;
     }
   }
+  score.addRows(rowCancelled);
+  if (rowCancelled == 1) {
+    score.addScore(100 * score.getLevel());
+  } //<>//
+  if (rowCancelled == 2) {
+    score.addScore(300 * score.getLevel());
+  }
+  if (rowCancelled == 3) {
+    score.addScore(500 * score.getLevel());
+  }
+  if (rowCancelled >= 4) {
+    score.addScore(800 * score.getLevel());
+  }
 }
 
 void drop() {
@@ -78,7 +97,7 @@ void drop() {
 }
 
 boolean isEnd() {
-  return (grid.getBox(0, 4).isNotEmpty()) || (grid.getBox(0, 5).isNotEmpty()); //<>//
+  return currentBlock.getPos()[0] < 0;
 }
 
 void endGame() {
@@ -89,6 +108,9 @@ void endGame() {
   textSize(29);
   textAlign(CENTER, CENTER);
   text("GAME OVER", 400, 300);
+  textAlign(CENTER);
+  textSize(20);
+  text("Score: " + score.getScore(), 400, 340);
 }
 
 void keyPressed() {
@@ -124,7 +146,7 @@ void keyPressed() {
         fall();
         turnsUntilFall=1;
       }
-    }
+    } //<>//
     if (key == 'z' || key == 'Z') {
       currentGhost.drawMino(false);
       currentBlock.drawMino(false);
@@ -136,6 +158,11 @@ void keyPressed() {
     }
     grid.drawGrid();
   }
+  if(key == 'r' || key == 'R'){
+    if(end){
+      setup();
+    }
+  }
 }
 
 void draw() {
@@ -145,19 +172,11 @@ void draw() {
   //generate new block, set current to that block
   //drawgrid
   if (!end) {
-    int speed = 40;
-    if (blockCount > 20 && blockCount <= 40) { //<>//
-      speed = 30;
-    }
-    if (blockCount > 40 && blockCount <= 60) {
-      speed = 20;
-    }
-    if (blockCount > 60 && blockCount <= 80) {
-      speed = 15;
-    }
+    int speed = score.increLevel();
     if (frameCount % speed == 0) {
       if (canFall()) {
         fall();
+        score.addScore(1);
       } else {
         if (turnsUntilFall==0) {
           turnsUntilFall=2;
@@ -165,17 +184,18 @@ void draw() {
           turnsUntilFall--;
         } else if (turnsUntilFall==1) {
           turnsUntilFall=0;
-          currentBlock.drawMino(true);
-          currentBlock = new Tetromino();
-          currentGhost = new Ghost(currentBlock);
-        cancel();
-        if (isEnd()) {
+          if (isEnd()) {
           end = true;
         }
           currentBlock.drawMino(true);
+          currentBlock = queue.next();
+          currentBlock.setPos(new int[] {-2, 3});
+          currentGhost = new Ghost(currentBlock);
+        cancel();
+          currentBlock.drawMino(true);
           currentGhost.drawMino(true);
-          blockCount++;
         }
+        score.drawNext();
       }
       grid.drawGrid();
     }
