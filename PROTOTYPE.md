@@ -68,6 +68,12 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - ✅ void setColor(color col) sets color to given color (new!)
      - ✅ color getColor() returns color (new!)
      - ✅ String getType() returns type ("Tetromino" or "Ghost") (new!)
+- a Ghost class that extends the Tetromino class (all new!)
+     - instance variables: ✅ Tetromino parent (the Tetromino the Ghost is following)
+     - methods (all overrides of Tetromino functions):
+          - ✅ void move(int dir)
+          - ✅ drawMino(boolean newBlock)
+          - ✅ boolean rotate(boolean clockwise)
 - ~~A method for making blocks fall. ~~Maybe a recursive function seeing if all connected boxes can fall. If yes, then fall. Maybe also a boolean for each block keeping track whether they already settled.~~ Keep track of the 4*4 area that the falling block is in. If canFall(), then move everything down by one.~~
 - ~~A canFall() method to see if the block can fall.~~ (fall and canFall are redundant with the move method)
 - ✅In draw generally draw periodically as the blocks move down, but we also have to change the screen when a line is cleared or when we rotate or move the blocks
