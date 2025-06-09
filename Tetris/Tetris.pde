@@ -3,7 +3,7 @@ import processing.sound.*;
 private Board grid;
 Tetromino currentBlock;
 private Ghost currentGhost;
-private Tetromino heldBlock;
+Tetromino heldBlock;
 private int turnsUntilFall=0;
 public static final int MOVE_RIGHT=0;
 public static final int MOVE_UP=1;
@@ -33,11 +33,41 @@ void setup() {
   currentGhost.drawMino(true);
   grid.drawGrid();
   Tetris = createFont("Data/bruce-forever.regular.ttf", 50);
+  drawHold();
   end = false;
   file = new SoundFile(this, "Data/Tetris.mp3");
   file.loop();
   score = new ScoreBox();
 }
+
+public void drawHold() {
+    stroke(255);
+    strokeWeight(3);
+    fill(75);
+    rect(80, 50, 170, 150, 10);
+    textFont(Tetris);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    textSize(24);
+    text("HOLD", 170, 70);
+    Board holdBoard=new Board(6, 4, 90, 90);
+    for (int i = 0; i < holdBoard.getHeight(); i++) {
+      for (int j = 0; j < holdBoard.getWidth(); j++) {
+        holdBoard.setColor(i, j, 0);
+      }
+    }
+    if (heldBlock!=null) {
+      int[][] rot = heldBlock.getRotations()[0];
+      for (int i=0; i<4; i++) {
+        for (int j=0; j<4; j++) {
+          if (rot[i][j]==1) {
+            holdBoard.setColor(i, j+1, heldBlock.getColor());
+          }
+        }
+      }
+    }
+    holdBoard.drawGrid();
+  }
 
 boolean canFall() {
   return currentBlock.canMove(MOVE_DOWN);
@@ -48,7 +78,7 @@ void fall() {
   if (canFall()) {
     currentBlock.move(MOVE_DOWN);
     rowDropped++;
-  }
+  } //<>//
   score.addScore(2 * rowDropped);
 }
 
@@ -116,7 +146,7 @@ void endGame() {
   textSize(20);
   text("Score: " + score.getScore(), 400, 340);
 }
-
+ //<>//
 void keyPressed() {
   if (!end) {
     if (key == CODED) {
@@ -179,6 +209,7 @@ void keyPressed() {
         currentGhost = new Ghost(currentBlock);
         currentBlock.drawMino(true);
         currentGhost.drawMino(true);
+        drawHold();
       }
     }
     grid.drawGrid();

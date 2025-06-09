@@ -38,30 +38,30 @@ public class ScoreBox {
     fill(75);
     stroke(255);
     strokeWeight(3);
-    rect(125, 350, 125, 180, 10);
+    rect(105, 350, 125, 180, 10);
     textFont(font);
     textAlign(CENTER, CENTER);
     fill(255);
     textSize(15);
-    text("SCORE", 125 + 125/2, 365);
-    text("LEVEL", 125 + 125/2, 425);
-    text("LINES", 125 + 125/2, 485);
+    text("SCORE", 105 + 125/2, 365);
+    text("LEVEL", 105 + 125/2, 425);
+    text("LINES", 105 + 125/2, 485);
     drawNext();
   }
   public void drawNext() {
     fill(25);
     stroke(255);
     strokeWeight(3);
-    rect(137.5, 380, 100, 20);
-    rect(137.5, 440, 100, 20);
-    rect(137.5, 500, 100, 20);
+    rect(117.5, 380, 100, 20);
+    rect(117.5, 440, 100, 20);
+    rect(117.5, 500, 100, 20);
     textFont(font);
     textAlign(CENTER, CENTER);
     fill(255);
     textSize(12);
-    text(score, 125 + 125/2, 390);
-    text(level, 125 + 125/2, 449);
-    text(totalRowsCleared, 125 + 125/2, 510);
+    text(score, 105 + 125/2, 390);
+    text(level, 105 + 125/2, 449);
+    text(totalRowsCleared, 105 + 125/2, 510);
   }
 
   public int getLevel() {

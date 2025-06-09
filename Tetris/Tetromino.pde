@@ -295,8 +295,16 @@ public class Tetromino {
      position=pos;
    }
    
+   public char getShape() {
+     return shape;
+   }
+   
    public void setColor(color col) {
      c=col;
+   }
+   
+   public color getColor() {
+     return c;
    }
    
    public String getType() {
