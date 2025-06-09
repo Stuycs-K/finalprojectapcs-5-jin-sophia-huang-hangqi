@@ -159,10 +159,6 @@ void draw() {
       if (canFall()) {
         fall();
       } else {
-        cancel();
-        if (isEnd()) {
-          end = true;
-        }
         if (turnsUntilFall==0) {
           turnsUntilFall=2;
         } else if (turnsUntilFall>1) {
@@ -174,6 +170,10 @@ void draw() {
           currentGhost = new Ghost(currentBlock);
           currentBlock.drawMino(true);
           currentGhost.drawMino(true);
+        cancel();
+        if (isEnd()) {
+          end = true;
+        }
           blockCount++;
         }
       }
