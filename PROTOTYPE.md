@@ -29,7 +29,10 @@ Nice to have features:
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.\
 **List of necessary functions:**
-![Alt text](umldiagram.png?raw=true "Title" ) 
+UML diagram (OLD):
+![Alt text](umldiagram.png?raw=true "old UML diagram" ) 
+Updated UML diagram:
+![Alt text](uml_updated.png?raw=true "updated UML diagram" ) 
 - A Tetris class containing the following methods and instance variables:
      - ✅ private Board grid: a 20*10 grid
      - ✅ ~~private~~ ~~int[] currentBlock: format of {i, j, h, w}, where i and j are the coordinate for the top left box, while h and w are how high and wide the box is.~~ instead do Tetromino currentBlock;
