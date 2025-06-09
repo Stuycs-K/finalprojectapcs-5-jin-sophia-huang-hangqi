@@ -78,7 +78,7 @@ boolean canFall() {
 
 void fall() {
   int rowDropped = 0;
-  if (canFall()) { //<>//
+  if (canFall()) { //<>// //<>//
     currentBlock.move(MOVE_DOWN);
     rowDropped++;
   } //<>//
@@ -144,10 +144,12 @@ void endGame() {
   fill(255);
   textSize(29);
   textAlign(CENTER, CENTER);
-  text("GAME OVER", 350, 300);
+  text("GAME OVER", 400, 275);
   textAlign(CENTER);
-  textSize(20); //<>//
-  text("Score: " + score.getScore(), 380, 340);
+  textSize(20); //<>// //<>//
+  text("Score: " + score.getScore(), 400, 315);
+  textSize(12);
+  text("Press R to restart", 400, 335);
 }
  //<>//
 void keyPressed() {
