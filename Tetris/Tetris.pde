@@ -220,6 +220,7 @@ void keyPressed() {
   if(key == 'r' || key == 'R'){
     firstTime=false;
     if(end){
+      file.pause();
       setup();
     }
   }
