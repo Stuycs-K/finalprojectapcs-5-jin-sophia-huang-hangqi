@@ -45,4 +45,4 @@ managed to fix rotations, but now there are inconsistencies with line clearing (
 fixed the issue with line clearing and new tetromino generation\
 made method to "hold" blocks; blocks can only switch into the hold mode once per turn, also made visuals for this
 
-I believe this document accurately reflects the contributions of my teamate. - Hangqi
+**I believe this document accurately reflects the contributions of my teamate. - Hangqi**
