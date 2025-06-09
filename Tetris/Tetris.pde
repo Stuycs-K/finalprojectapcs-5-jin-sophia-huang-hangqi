@@ -3,6 +3,7 @@ import processing.sound.*;
 private Board grid;
 Tetromino currentBlock;
 private Ghost currentGhost;
+private Tetromino heldBlock;
 private int turnsUntilFall=0;
 public static final int MOVE_RIGHT=0;
 public static final int MOVE_UP=1;
@@ -10,6 +11,7 @@ public static final int MOVE_LEFT=2;
 public static final int MOVE_DOWN=3;
 PFont Tetris;
 private boolean end;
+private boolean held;
 private SoundFile file;
 PImage background;
 BlockQueue queue;
@@ -21,6 +23,8 @@ void setup() {
   grid = new Board(10, 20, width / 2 - (25 * 10 / 2), height / 2 - (25 * 20 / 2));
   background = loadImage("Data/wp2675347.jpg");
   background(background);
+  held=false;
+  heldBlock=null;
   queue = new BlockQueue();
   currentBlock = queue.next();
   currentGhost = new Ghost(currentBlock);
@@ -74,7 +78,7 @@ void cancel() {
       }
       i++;
     }
-  }
+  } //<>//
   score.addRows(rowCancelled);
   if (rowCancelled == 1) {
     score.addScore(100 * score.getLevel());
@@ -142,7 +146,7 @@ void keyPressed() {
       }
     }
     if (key == ' ') {
-      while (canFall()) {
+      while (canFall()) { //<>//
         fall();
         turnsUntilFall=1;
       }
@@ -155,6 +159,27 @@ void keyPressed() {
       }
       currentGhost.drawMino(true);
       currentBlock.drawMino(true);
+    }
+    if (key == 'c' || key == 'C') {
+      if (!held) {
+        held=true;
+        currentBlock.drawMino(false);
+        currentGhost.drawMino(false);
+        boolean empty = (heldBlock==null);
+        if (empty) {
+          heldBlock=currentBlock;
+          currentBlock = queue.next();
+        } else {
+          Tetromino tempMino = heldBlock;
+          heldBlock=currentBlock;
+          currentBlock=tempMino;
+          currentBlock.setRotationIndex(0);
+        }
+        currentBlock.setPos(new int[] {-2, 3});
+        currentGhost = new Ghost(currentBlock);
+        currentBlock.drawMino(true);
+        currentGhost.drawMino(true);
+      }
     }
     grid.drawGrid();
   }
@@ -187,6 +212,7 @@ void draw() {
           if (isEnd()) {
           end = true;
         }
+        held=false;
           currentBlock.drawMino(true);
           currentBlock = queue.next();
           currentBlock.setPos(new int[] {-2, 3});

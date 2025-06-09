@@ -31,6 +31,8 @@ public class Ghost extends Tetromino {
        move(MOVE_DOWN);
       }
     }
+    //System.out.println(Arrays.deepToString(getRotation())+" "+rotationIndex());
+    //System.out.println(Arrays.deepToString(parent.getRotation())+" "+parent.rotationIndex());
      int[][] config = parent.rotations[parent.currentRotation];
      for (int i=0; i<config.length; i++) {
        for (int j=0; j<config[i].length; j++) {
