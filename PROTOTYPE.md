@@ -43,49 +43,52 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
      - ✅ BlockQueue queue (new!)
      - ✅ ScoreBox score (new!)
      - ~~private char currentBlockType: the type of block currentBlock is; for rotation~~ (info already in Tetromino class)
-     - ✅ void setup(): create the grid and draw it
-     - ✅ void draw(): check if currentBlock can fall, if yes fall; otherwise, check if any rows can be cancelled, cancel them, then generate new block, set currentBlock
-     - ✅ void drawHold() draws the hold box (new!)
-     - ✅ boolean canFall() returns whether or not the block can fall; just calls Tetromino.canMove()
-     - ✅ void fall() moves the tetromino down
-     - ✅ void drop() makes the Tetromino fall until it can't anymore (new!)
-     - ~~void newBlock(): create a tetromino, copy and past the value of the colors onto the middle top of the grid, set currentBlock and currentBlockType~~ (redundant with new Tetromino(0 constructor)
-     - ✅ boolean canCancel(): check if row is colored in
-     - ✅ void cancel(): check if each row can cancel; if yes, clear that row, move everything else down
-     - ✅ boolean isEnd() checks the game should end (new!)
-     - ✅ void endGame() ends the game (new!)
+     - methods:
+          - ✅ void setup(): create the grid and draw it
+          - ✅ void draw(): check if currentBlock can fall, if yes fall; otherwise, check if any rows can be cancelled, cancel them, then generate new block, set currentBlock
+          - ✅ void drawHold() draws the hold box (new!)
+          - ✅ boolean canFall() returns whether or not the block can fall; just calls Tetromino.canMove()
+          - ✅ void fall() moves the tetromino down
+          - ✅ void drop() makes the Tetromino fall until it can't anymore (new!)
+          - ~~void newBlock(): create a tetromino, copy and past the value of the colors onto the middle top of the grid, set currentBlock and currentBlockType~~ (redundant with new Tetromino(0 constructor)
+          - ✅ boolean canCancel(): check if row is colored in
+          - ✅ void cancel(): check if each row can cancel; if yes, clear that row, move everything else down
+          - ✅ boolean isEnd() checks the game should end (new!)
+          - ✅ void endGame() ends the game (new!)
 - A Box class that represents a single box in the grid of Tetris, which is a 20 by 10 grid (either through array or Deque). If doing Color[][], each slot holds the color of that box. The grid is then drawn through Processing.
      - ✅constructor takes in a color and position and size (new!)
      - ✅instance variables: color c, ~~Box[] neighbors~~, int[] position, Tetromino associatedT (new!), int size (new!)
-     - ✅methods: boolean isNotEmpty() tells whether the Box actually has a tetris block in it
-     - ~~Box getNeighbor(int dir) returns neighbors[dir]~~
-     - ~~void setNeighbor(Box b, int index) sets neighbor[index] to b (new!)~~
-     - ✅void setTetromino(Tetromino t) sets associatedT to t
-     - ✅color getColor()
-     - ✅void setColor(color c)
-     - ✅void empty() sets color to 0 and associatedT to null (new!)
-     - ✅int[] getPosition() returns position of Box
-     - ✅void drawBox() draws the given Box (new!)
+     - methods:
+          - ✅ boolean isNotEmpty() tells whether the Box actually has a tetris block in it
+          - ~~Box getNeighbor(int dir) returns neighbors[dir]~~
+          - ~~void setNeighbor(Box b, int index) sets neighbor[index] to b (new!)~~
+          - ✅void setTetromino(Tetromino t) sets associatedT to t
+          - ✅color getColor()
+          - ✅void setColor(color c)
+          - ✅void empty() sets color to 0 and associatedT to null (new!)
+          - ✅int[] getPosition() returns position of Box
+          - ✅void drawBox() draws the given Box (new!)
 - An ~~Block~~ Tetromino class that represents each type of block. The type of block is stored as a variable in the class, and is represented by a Box[]
      - ✅ constructor takes in no args; ~~the shape is randomly chosen~~ and the color is associated with the shape and the position starts at the top middle (might have to be customized for each shape)
      - ✅ constructor with an arg for the shape
      - ✅ constructor with an arg for the position
      - ✅ instance variables: color c, ~~String~~ char shape, ~~Box[] position~~ int[] position, int[][][] rotations (array of 2d arrays that each represent a possible rotation of the piece) (new!), int currentRotation (index in rotations) (new!), String type (either "Ghost" or "Tetromino") (new!)
-     - ✅ methods: boolean canMove(int dir) where dir aligns with the index in the neighbors array of the Box
-     - ✅ void setRotation(char shape) called in the constructor sets rotation arrays based on shape (new!)
-     - ✅ void move(int dir) moves it in the given direction (it should call canMove())
-     - ✅ boolean rotate(boolean clockwise) either rotates it CW or CCW by editing the position array and will return false if you can't rotate
-     - ✅ A method for generating blocks onto the grid (we named this drawMino(boolean newBlock)). The function maps the int[][] of the block onto the grid, ~~centerd at top~~ based on the position of the bottom left square, and it copies the colors in the block onto the grid. Will draw the block of newBlock is true and will erase it if newBlock is false (new!)
-            - drawMino(boolean newBlock, Board board) draws the block on a specific grid
-     - ✅ int[][] getRotation() returns current array representing the block (new!)
-     - ✅ int rotationIndex() returns current index in array of rotation arrays (new!)
-     - ✅ void setRotationIndex(int i) sets current rotation index to the given int (new!)
-     - ✅ int[] getPos() returns position (new!)
-     - ✅ void setPos(int[] pos) sets position to given 2 element array (new!)
-     - ✅ char getShape() returns shape type of block (new!)
-     - ✅ void setColor(color col) sets color to given color (new!)
-     - ✅ color getColor() returns color (new!)
-     - ✅ String getType() returns type ("Tetromino" or "Ghost") (new!)
+     - methods:
+          - ✅ boolean canMove(int dir) where dir aligns with the index in the neighbors array of the Box
+          - ✅ void setRotation(char shape) called in the constructor sets rotation arrays based on shape (new!)
+          - ✅ void move(int dir) moves it in the given direction (it should call canMove())
+          - ✅ boolean rotate(boolean clockwise) either rotates it CW or CCW by editing the position array and will return false if you can't rotate
+          - ✅ A method for generating blocks onto the grid (we named this drawMino(boolean newBlock)). The function maps the int[][] of the block onto the grid, ~~centerd at top~~ based on the position of the bottom left square, and it copies the colors in the block onto the grid. Will draw the block of newBlock is true and will erase it if newBlock is false (new!)
+                 - drawMino(boolean newBlock, Board board) draws the block on a specific grid
+          - ✅ int[][] getRotation() returns current array representing the block (new!)
+          - ✅ int rotationIndex() returns current index in array of rotation arrays (new!)
+          - ✅ void setRotationIndex(int i) sets current rotation index to the given int (new!)
+          - ✅ int[] getPos() returns position (new!)
+          - ✅ void setPos(int[] pos) sets position to given 2 element array (new!)
+          - ✅ char getShape() returns shape type of block (new!)
+          - ✅ void setColor(color col) sets color to given color (new!)
+          - ✅ color getColor() returns color (new!)
+          - ✅ String getType() returns type ("Tetromino" or "Ghost") (new!)
 - a Ghost class that extends the Tetromino class (all new!)
      - instance variables: ✅ Tetromino parent (the Tetromino the Ghost is following)
      - constructor: ✅ new Ghost(Tetromino p) sets the Tetromino the Ghost follows
@@ -107,14 +110,16 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 -  a BlockQueue class for the queued blocks (new!)
      - instance variables: ✅ ArrayList<Tetromino> nextInLine, ✅ BlockGeneration permutation, ✅ PFont font, ✅ Board smallBoard
      - constructor: ✅ BlockQueue() makes queue of 3 blocks
-     - methods: ✅ Tetromino next() return next in queue and moves other items up
-     - ✅ void drawBox() draws the queue as it appears on the screen
-     - ✅ void drawNext() draws the next item in the queue
+     - methods:
+          - ✅ Tetromino next() return next in queue and moves other items up
+          - ✅ void drawBox() draws the queue as it appears on the screen
+          - ✅ void drawNext() draws the next item in the queue
 - a BlockGeneration class that helps randomize the order of the Tetromino queue (new!)
      - instance variable: ✅ ArrayList<Tetromino> permutation
      - constructor: ✅ BlockGeneration() randomizes the permutation
-     - methods: ✅ ArrayList<Tetromino> randomize() returns list of 7 tetrominoes in randomized order
-     - ✅ Tetromino next() returns the next Tetromino in the list, will call randomize() again if it's empty
+     - methods:
+          - ✅ ArrayList<Tetromino> randomize() returns list of 7 tetrominoes in randomized order
+          - ✅ Tetromino next() returns the next Tetromino in the list, will call randomize() again if it's empty
 - ScoreBox class for keeping the score
      - instance variables: ✅ int score, ✅ int level, ✅ int totalRowsCleared, ✅ PFont font
      - constructor: ✅ ScoreBox() initializes score box
