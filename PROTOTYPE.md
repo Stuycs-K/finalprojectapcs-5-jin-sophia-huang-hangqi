@@ -21,7 +21,7 @@ Nice to have features:
 - ✅a score that displays on the screen
 - ✅block falling speeds up as you increase "levels" by clearing some number of lines
 - ✅queue of the 3 tetrominoes that will come next
-- “hold” function — can keep track of one block but can only switch between the falling and “held” block once
+- ✅ “hold” function — can keep track of one block but can only switch between the falling and “held” block once
 - high score, home page for restarting
 
      
@@ -80,11 +80,11 @@ Ideas to break up the work: Hangqi will work on the graphics and Sophia will wor
     - ✅ make sure that you're still able to slide under pieces with the left and right movement as long as it's supposed to be physically possible
     - ✅ test clearing different amounts of lines at a time to make sure it all works
 4. Rotation by Fri 5/30
-    - make sure that T-spins are possible!
-    - be very careful to make sure rotations don't make blocks pass through one another; perhaps turn off the gravity to test various rotation situations
-    - make sure that all types of blocks can be rotated properly
+    - ✅ make sure that T-spins are possible!
+    - ✅ be very careful to make sure rotations don't make blocks pass through one another; perhaps turn off the gravity to test various rotation situations
+    - ✅ make sure that all types of blocks can be rotated properly
 5. End game by Mon 6/2
      - ✅ends game when blocks can no longer be drawn
 7. Other features (if possible)
-   - priority order is probably approximately image, ✅queue, ✅score, hold, ✅increased speed, ✅music, home screen
+   - priority order is probably approximately image, ✅queue, ✅score, ✅hold, ✅increased speed, ✅music, home screen
 
