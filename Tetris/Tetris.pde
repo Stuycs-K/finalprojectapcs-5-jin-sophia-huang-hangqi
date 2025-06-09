@@ -11,6 +11,7 @@ public static final int MOVE_LEFT=2;
 public static final int MOVE_DOWN=3;
 PFont Tetris;
 private boolean end;
+private boolean firstTime=true;
 private boolean held;
 private SoundFile file;
 PImage background;
@@ -35,8 +36,10 @@ void setup() {
   Tetris = createFont("Data/bruce-forever.regular.ttf", 50);
   drawHold();
   end = false;
-  file = new SoundFile(this, "Data/Tetris.mp3");
-  file.loop();
+  if (firstTime) {
+    file = new SoundFile(this, "Data/Tetris.mp3");
+    file.loop();
+  }
   score = new ScoreBox();
 }
 
@@ -75,7 +78,7 @@ boolean canFall() {
 
 void fall() {
   int rowDropped = 0;
-  if (canFall()) {
+  if (canFall()) { //<>//
     currentBlock.move(MOVE_DOWN);
     rowDropped++;
   } //<>//
@@ -141,10 +144,10 @@ void endGame() {
   fill(255);
   textSize(29);
   textAlign(CENTER, CENTER);
-  text("GAME OVER", 400, 300);
+  text("GAME OVER", 350, 300);
   textAlign(CENTER);
-  textSize(20);
-  text("Score: " + score.getScore(), 400, 340);
+  textSize(20); //<>//
+  text("Score: " + score.getScore(), 380, 340);
 }
  //<>//
 void keyPressed() {
@@ -215,6 +218,7 @@ void keyPressed() {
     grid.drawGrid();
   }
   if(key == 'r' || key == 'R'){
+    firstTime=false;
     if(end){
       setup();
     }
