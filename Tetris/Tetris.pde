@@ -216,6 +216,7 @@ void keyPressed() {
   }
   if(key == 'r' || key == 'R'){
     if(end){
+      file.pause();
       setup();
     }
   }
