@@ -17,10 +17,10 @@ Critical Features (Minimum Viable Product):
 
 Nice to have features:
 - ghostly image of where the tetromino should fall (new!)
-- Tetris music!!! + settings to turn off music/sfx
-- a score that displays on the screen
+- ✅Tetris music!!! + settings to turn off music/sfx
+- ✅a score that displays on the screen
 - ✅block falling speeds up as you increase "levels" by clearing some number of lines
-- queue of the 3 tetrominoes that will come next
+- ✅queue of the 3 tetrominoes that will come next
 - “hold” function — can keep track of one block but can only switch between the falling and “held” block once
 - high score, home page for restarting
 
@@ -86,5 +86,5 @@ Ideas to break up the work: Hangqi will work on the graphics and Sophia will wor
 5. End game by Mon 6/2
      - ✅ends game when blocks can no longer be drawn
 7. Other features (if possible)
-   - priority order is probably approximately image, queue, score, hold, ✅increased speed, music, home screen
+   - priority order is probably approximately image, ✅queue, ✅score, hold, ✅increased speed, ✅music, home screen
 

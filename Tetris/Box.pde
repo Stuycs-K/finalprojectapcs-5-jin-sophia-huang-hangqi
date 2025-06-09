@@ -2,19 +2,33 @@ public class Box {
   private color c;
   private int[] position;
   private int size;
-  
+  private Tetromino associatedT;
   public Box(color boxColor, int[] pos, int s) {
     c=boxColor;
     position=pos;
     size=s;
+    associatedT=null;
+  }
+  
+  void setTetromino(Tetromino t) {
+     associatedT=t;
+  }
+  
+  Tetromino getTetromino() {
+    return associatedT;
   }
   
   boolean isNotEmpty() {
-    return (c!=0);
+    return (associatedT!=null && associatedT.getType().equals("Tetromino") && associatedT!=currentBlock);
   }
   
   color getColor() {
     return c;
+  }
+  
+  void empty() {
+    setColor(0);
+    setTetromino(null);
   }
   
   void setColor(color col) {
@@ -26,7 +40,14 @@ public class Box {
   }
   
   void drawBox() {
-    stroke(50);
+    if(getColor() == 0){
+      strokeWeight(1);
+      stroke(50);
+    }
+    else{
+      strokeWeight(2);
+      stroke(50);
+    }
     fill(getColor());
     square(position[0], position[1], size);
   }

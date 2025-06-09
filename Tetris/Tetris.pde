@@ -1,28 +1,38 @@
 import processing.sound.*;
 
 private Board grid;
-private Tetromino currentBlock;
+Tetromino currentBlock;
+private Ghost currentGhost;
 private int turnsUntilFall=0;
 public static final int MOVE_RIGHT=0;
 public static final int MOVE_UP=1;
 public static final int MOVE_LEFT=2;
 public static final int MOVE_DOWN=3;
-private int blockCount;
 PFont Tetris;
 private boolean end;
 private SoundFile file;
+PImage background;
+BlockQueue queue;
+ScoreBox score;
+
 
 void setup() {
   size(800, 600);
-  grid = new Board();
-  currentBlock = new Tetromino();
-  blockCount = 1;
+  grid = new Board(10, 20, width / 2 - (25 * 10 / 2), height / 2 - (25 * 20 / 2));
+  background = loadImage("Data/wp2675347.jpg");
+  background(background);
+  queue = new BlockQueue();
+  currentBlock = queue.next();
+  currentGhost = new Ghost(currentBlock);
+  currentBlock.setPos(new int[] {-2, 3});
   currentBlock.drawMino(true);
+  currentGhost.drawMino(true);
   grid.drawGrid();
-  Tetris = createFont("bruce-forever.regular.ttf", 50);
+  Tetris = createFont("Data/bruce-forever.regular.ttf", 50);
   end = false;
-  file = new SoundFile(this, "Tetris.mp3");
-  file.play();
+  file = new SoundFile(this, "Data/Tetris.mp3");
+  file.loop();
+  score = new ScoreBox();
 }
 
 boolean canFall() {
@@ -30,35 +40,53 @@ boolean canFall() {
 }
 
 void fall() {
+  int rowDropped = 0;
   if (canFall()) {
     currentBlock.move(MOVE_DOWN);
+    rowDropped++;
   }
+  score.addScore(2 * rowDropped);
 }
 
 boolean canCancel(int row) {
   for (int j = 0; j < grid.getWidth(); j++) {
-    if (grid.getColor(row, j) == 0) {
+    if (!grid.getBox(row, j).isNotEmpty()) {
       return false;
     }
   }
-  println("true "+row);
   return true;
 }
 
 void cancel() {
+  int rowCancelled = 0;
   for (int i = grid.getHeight() - 1; i >= 0; i--) {
     if (canCancel(i)) {
+      rowCancelled++;
       for (int j = 0; j < grid.getWidth(); j++) {
-        grid.setColor(i, j, color(0));
+        grid.getBox(i, j).empty();
       }
       for (int rowsAbove = i - 1; rowsAbove >= 0; rowsAbove--) {
         for (int j = 0; j < grid.getWidth(); j++) {
           color temp = grid.getColor(rowsAbove, j);
           grid.setColor(rowsAbove + 1, j, temp);
+          grid.getBox(rowsAbove+1, j).setTetromino(grid.getBox(rowsAbove, j).getTetromino());
         }
       }
       i++;
     }
+  }
+  score.addRows(rowCancelled);
+  if (rowCancelled == 1) {
+    score.addScore(100 * score.getLevel());
+  } //<>//
+  if (rowCancelled == 2) {
+    score.addScore(300 * score.getLevel());
+  }
+  if (rowCancelled == 3) {
+    score.addScore(500 * score.getLevel());
+  }
+  if (rowCancelled >= 4) {
+    score.addScore(800 * score.getLevel());
   }
 }
 
@@ -69,7 +97,7 @@ void drop() {
 }
 
 boolean isEnd() {
-  return (grid.getColor(0, 4) != 0) || (grid.getColor(0, 5) != 0);
+  return currentBlock.getPos()[0] < 0;
 }
 
 void endGame() {
@@ -80,33 +108,61 @@ void endGame() {
   textSize(29);
   textAlign(CENTER, CENTER);
   text("GAME OVER", 400, 300);
+  textAlign(CENTER);
+  textSize(20);
+  text("Score: " + score.getScore(), 400, 340);
 }
 
 void keyPressed() {
-  if (key == CODED) {
-    if (keyCode == LEFT) {
-      currentBlock.move(MOVE_LEFT);
+  if (!end) {
+    if (key == CODED) {
+      if (keyCode == LEFT && currentBlock.canMove(MOVE_LEFT)) {
+        currentBlock.move(MOVE_LEFT);
+        currentGhost.drawMino(false);
+        currentGhost.drawMino(true);
+        currentBlock.drawMino(true);
+      }
+      if (keyCode == RIGHT && currentBlock.canMove(MOVE_RIGHT)) {
+        currentBlock.move(MOVE_RIGHT);
+        currentGhost.drawMino(false);
+        currentGhost.drawMino(true);
+        currentBlock.drawMino(true);
+      }
+      if (keyCode == UP) {
+        currentGhost.drawMino(false);
+        currentBlock.drawMino(false);
+        if (currentBlock.rotate(true)) {
+          currentGhost.rotate(true);
+        }
+        currentGhost.drawMino(true);
+        currentBlock.drawMino(true);
+      }
+      if (keyCode == DOWN && currentBlock.canMove(MOVE_DOWN)) {
+        fall();
+      }
     }
-    if (keyCode == RIGHT) {
-      currentBlock.move(MOVE_RIGHT);
+    if (key == ' ') {
+      while (canFall()) {
+        fall();
+        turnsUntilFall=1;
+      }
+    } //<>//
+    if (key == 'z' || key == 'Z') {
+      currentGhost.drawMino(false);
+      currentBlock.drawMino(false);
+      if (currentBlock.rotate(false)) {
+         currentGhost.rotate(false);
+      }
+      currentGhost.drawMino(true);
+      currentBlock.drawMino(true);
     }
-    if (keyCode == UP) {
-      currentBlock.rotate(true);
-    }
-    if (keyCode == DOWN) {
-      fall();
+    grid.drawGrid();
+  }
+  if(key == 'r' || key == 'R'){
+    if(end){
+      setup();
     }
   }
-  if (key == ' ') {
-    while (canFall()) {
-      fall();
-      turnsUntilFall=1;
-    }
-  }
-  if (key == 'z' || key == 'Z') {
-    currentBlock.rotate(false);
-  }
-  grid.drawGrid();
 }
 
 void draw() {
@@ -116,38 +172,34 @@ void draw() {
   //generate new block, set current to that block
   //drawgrid
   if (!end) {
-    int speed = 40;
-    if (blockCount > 20 && blockCount <= 40) {
-      speed = 30;
-    }
-    if (blockCount > 40 && blockCount <= 60) {
-      speed = 20;
-    }
-    if (blockCount > 60 && blockCount <= 80) {
-      speed = 15;
-    }
+    int speed = score.increLevel();
     if (frameCount % speed == 0) {
       if (canFall()) {
         fall();
+        score.addScore(1);
       } else {
-        cancel();
-        if (isEnd()) {
-          end = true;
-        }
         if (turnsUntilFall==0) {
           turnsUntilFall=2;
         } else if (turnsUntilFall>1) {
           turnsUntilFall--;
         } else if (turnsUntilFall==1) {
           turnsUntilFall=0;
-          currentBlock = new Tetromino();
-          blockCount++;
+          if (isEnd()) {
+          end = true;
         }
+          currentBlock.drawMino(true);
+          currentBlock = queue.next();
+          currentBlock.setPos(new int[] {-2, 3});
+          currentGhost = new Ghost(currentBlock);
+        cancel();
+          currentBlock.drawMino(true);
+          currentGhost.drawMino(true);
+        }
+        score.drawNext();
       }
       grid.drawGrid();
     }
-  }
-  else{
+  } else {
     endGame();
   }
 }

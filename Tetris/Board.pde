@@ -2,23 +2,23 @@ public class Board {
   private Box[][] board;
   private int size = 25;
   
-  public Board() {
-    board = new Box[20][10];
-    int initX = width / 2 - (size * 10 / 2);
-    int initY = height / 2 - (size * 20 / 2);
+  public Board(int width, int height, int initX, int initY) {
+    board = new Box[height][width];
     for (int i = 0; i < board.length; i++) {
       for (int j = 0; j < board[0].length; j++) {
         board[i][j] = new Box(0, new int[]{initX + j * size, initY + i * size}, size);
       }
     }
   }
+  
   public void drawGrid() {
-    for (int i = 0; i < 20; i++){
-      for(int j = 0; j < 10; j++){
+    for (int i = 0; i < board.length; i++){
+      for(int j = 0; j < board[0].length; j++){
         board[i][j].drawBox();
       }
     }
   }
+  
   public color getColor(int i, int j){
     return board[i][j].getColor();
   }
