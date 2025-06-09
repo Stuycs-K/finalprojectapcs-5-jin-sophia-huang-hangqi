@@ -40,3 +40,6 @@ somehow the game won't load anymore and I'm trying to figure that out
 ### 2025-06-06 slowly debugging ghost
 got rid of the infinite loop; made new constructor for Tetromino so rotations hopefully work properly\
 managed to fix rotations, but now there are inconsistencies with line clearing (and probably with the criteria for a box being empty)
+
+### 2025-06-08 finished debugging ghost!
+fixed the issue with line clearing and new tetromino generation
